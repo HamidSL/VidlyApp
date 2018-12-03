@@ -1,0 +1,44 @@
+﻿@model VidlyPrototype.ViewModels.MovieViewModel
+@{
+    var formTitle = Model.Movies.Id == 0 ? "Create Movie" : "Update Movie";
+    ViewBag.Title = formTitle;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div id="movies-form-section">
+    <div class="movies-form-inner header-inner-spaced container">
+        <div class="row">
+            <div class="col-6 offset-3 p-2">
+                <h3 class="display-4 py-2 mb-3 border-bottom text-center">@formTitle</h3>
+                @using (Html.BeginForm("Save", "Movies"))
+                {
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Movies.Name)
+                        @Html.TextBoxFor(m => m.Movies.Name, new { @class = "form-control", autocomplete="off" })
+                        @Html.ValidationMessageFor(m => m.Movies.Name, "", new { @class="text-danger small"})
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Movies.ReleaseDate)
+                        @Html.TextBoxFor(m => m.Movies.ReleaseDate, "{0:dd MMM yyyy}", new { @class = "form-control", autocomplete = "off" })
+                        @Html.ValidationMessageFor(m => m.Movies.ReleaseDate, "", new { @class = "text-danger small" })
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Movies.MovieGenresId)
+                        @Html.DropDownListFor(m => m.Movies.MovieGenresId, new SelectList(Model.MovieGenres, "Id", "Name"), "Select Movie Genre", new { @class = "form-control text-capitalize" })
+                        @Html.ValidationMessageFor(m => m.Movies.MovieGenresId, "", new { @class = "text-danger small" })
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Movies.NoInStock)
+                        @Html.TextBoxFor(m => m.Movies.NoInStock, new { @class = "form-control", autocomplete = "off" })
+                        @Html.ValidationMessageFor(m => m.Movies.NoInStock, "", new { @class = "text-danger small" })
+                    </div>
+                    @Html.HiddenFor(m => m.Movies.Id)
+                    @Html.AntiForgeryToken()
+                    <button class="btn btn-primary btn-block">Save</button>
+                }
+
+            </div>
+        </div>
+    </div>
+</div>
+

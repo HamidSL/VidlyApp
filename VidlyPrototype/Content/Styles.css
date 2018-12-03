@@ -1,0 +1,11 @@
+﻿.navbar {
+    border-bottom: solid #B44D09 3px !important;
+}
+
+.header-inner-spaced{
+    padding-top: 100px;
+}
+
+.input-validation-error{
+   border: solid red 2px;
+}

@@ -1,0 +1,24 @@
+﻿@model VidlyPrototype.Models.Movie
+
+@{
+    ViewBag.Title = Model.Name;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div id="movie-details-section">
+    <div class="movie-details-inner header-inner-spaced container">
+        <div class="row">
+            <div class="col">
+                <h3 class="display-4 border-bottom py-2 mb-3 text-capitalize">@Model.Name</h3>
+                <ul>
+                    <li>Genre: <span class="text-capitalize">@Model.MovieGenres.Name</span></li>
+                    <li>Release Date: @Model.ReleaseDate.ToLongDateString()</li>
+                    <li>Date Added: @Model.DateAdded.ToLongDateString()</li>
+                    <li>No In Stock: @Model.NoInStock</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+

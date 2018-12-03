@@ -1,0 +1,43 @@
+﻿@model IEnumerable<VidlyPrototype.Models.Movie>
+@{
+    ViewBag.Title = "Movies";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div id="movie-header-section">
+    <div class="container movie-header-inner header-inner-spaced">
+        <div class="row">
+            <div class="col">
+                <h3 class="display-4 border-bottom py-2 mb-3">Movies</h3>
+                @if (Model.Any())
+                {
+                    <div class="table-responsive">
+                        <table class="table table-bordered">
+                            <thead class="thead-light">
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Genre</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var movie in Model)
+                                {
+                                <tr>
+                                    <td>@Html.ActionLink(@movie.Name, "Edit", "Movies", new { id = movie.Id }, new { @class = "text-capitalize" })</td>
+                                    <td class="text-capitalize">@movie.MovieGenres.Name</td>
+                                </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                }
+                else
+                {
+                    <p class="lead text-center">There are no movies at the moment</p>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+
