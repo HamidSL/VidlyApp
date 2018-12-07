@@ -29,7 +29,10 @@ namespace VidlyPrototype.Controllers
         {
             var customers = _context.Customers.Include(c => c.MembershipTypes).ToList();
 
-            return View(customers);
+            if (User.IsInRole(RoleName.IsAdministrator))
+                return View("Index", customers);
+
+            return View("ReadOnlyIndex", customers);
         }
 
         //GET: Create Form

@@ -9,10 +9,10 @@
         <div class="row">
             <div class="col">
                 <h3 class="display-4 border-bottom py-2 mb-3">Movies</h3>
-                @if (Model.Any())
-                {
+                @*@if (Model.Any())
+                {*@
                     <div class="table-responsive">
-                        <table class="table table-bordered">
+                        <table class="table table-bordered" id="movies">
                             <thead class="thead-light">
                                 <tr>
                                     <th>Name</th>
@@ -20,24 +20,53 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach (var movie in Model)
+                                @*@foreach (var movie in Model)
                                 {
-                                <tr>
-                                    <td>@Html.ActionLink(@movie.Name, "Edit", "Movies", new { id = movie.Id }, new { @class = "text-capitalize" })</td>
-                                    <td class="text-capitalize">@movie.MovieGenres.Name</td>
-                                </tr>
-                                }
+                                    <tr>
+                                        <td>@Html.ActionLink(@movie.Name, "Edit", "Movies", new { id = movie.Id }, new { @class = "text-capitalize" })</td>
+                                        <td class="text-capitalize">@movie.MovieGenres.Name</td>
+                                    </tr>
+                                }*@
                             </tbody>
                         </table>
                     </div>
-                }
+                @*}
                 else
                 {
                     <p class="lead text-center">There are no movies at the moment</p>
-                }
+                }*@
             </div>
         </div>
     </div>
 </div>
+@section scripts
+{
+    <script>
+        $(document).ready(function () {
+            var table = $("#movies").DataTable({
+                ajax: {
+                    url: "/api/movies",
+                    dataSrc:""
+                },
+                columns: [
+                    {
+                        data: "name",
+                        render: function (data, type, movies) {
+                            return "<a class='text-capitalize' href='/movies/show/" + movies.id + "'>" + movies.name + "</a>";
+                        }
+                    },
+                    {
+                        data: "movieGenres.name",
+                        render: function (data) {
+                            return "<span class='text-capitalize'>" + data + "</span>";
+                        }
+                    }
+                    
 
+                ]
+            });
+        });
+    </script>
+
+}
 

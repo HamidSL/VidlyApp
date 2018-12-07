@@ -7,6 +7,7 @@ using System.Net.Http;
 using System.Web.Http;
 using VidlyPrototype.Dtos;
 using VidlyPrototype.Models;
+using System.Data.Entity;
 
 namespace VidlyPrototype.Controllers.Api
 {
@@ -22,7 +23,7 @@ namespace VidlyPrototype.Controllers.Api
         //GET /api/movies/ 
         public IEnumerable<MovieDto> GetMovies()
         {
-            return _context.Movies.ToList().Select(Mapper.Map<Movie, MovieDto>);
+            return _context.Movies.Include(m => m.MovieGenres).ToList().Select(Mapper.Map<Movie, MovieDto>);
         }
 
         //GET /api/movies/1

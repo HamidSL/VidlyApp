@@ -20,6 +20,8 @@ namespace VidlyPrototype.Dtos
         [Range(1, 50)]
         public byte NoInStock { get; set; }
 
+        public MovieGenresDto MovieGenres { get; set; }
+
         public int MovieGenresId { get; set; }
 
         public MovieDto()
