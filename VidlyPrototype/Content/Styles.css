@@ -9,3 +9,11 @@
 .input-validation-error{
    border: solid red 2px;
 }
+
+label.error{
+    color: red;
+}
+
+input.error{
+    border: solid red 2px;
+}

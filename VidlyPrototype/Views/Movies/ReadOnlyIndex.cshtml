@@ -1,4 +1,6 @@
 ﻿@model IEnumerable<VidlyPrototype.Models.Movie>
+@using Microsoft.AspNet.Identity;
+
 @{
     ViewBag.Title = "Movies";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -10,31 +12,31 @@
             <div class="col">
                 <h3 class="display-4 border-bottom py-2 mb-3">Movies</h3>
                 @*@if (Model.Any())
-                {*@
-                    <div class="table-responsive">
-                        <table class="table table-bordered" id="movies">
-                            <thead class="thead-light">
-                                <tr>
-                                    <th>Name</th>
-                                    <th>Genre</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @*@foreach (var movie in Model)
+                    {*@
+                <div class="table-responsive">
+                    <table class="table table-bordered" id="movies">
+                        <thead class="thead-light">
+                            <tr>
+                                <th>Name</th>
+                                <th>Genre</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @*@foreach (var movie in Model)
                                 {
                                     <tr>
                                         <td>@Html.ActionLink(@movie.Name, "Edit", "Movies", new { id = movie.Id }, new { @class = "text-capitalize" })</td>
                                         <td class="text-capitalize">@movie.MovieGenres.Name</td>
                                     </tr>
                                 }*@
-                            </tbody>
-                        </table>
-                    </div>
+                        </tbody>
+                    </table>
+                </div>
                 @*}
-                else
-                {
-                    <p class="lead text-center">There are no movies at the moment</p>
-                }*@
+                    else
+                    {
+                        <p class="lead text-center">There are no movies at the moment</p>
+                    }*@
             </div>
         </div>
     </div>
@@ -43,10 +45,11 @@
 {
     <script>
         $(document).ready(function () {
+
             var table = $("#movies").DataTable({
                 ajax: {
                     url: "/api/movies",
-                    dataSrc:""
+                    dataSrc: ""
                 },
                 columns: [
                     {
@@ -61,7 +64,6 @@
                             return "<span class='text-capitalize'>" + data + "</span>";
                         }
                     }
-                    
 
                 ]
             });

@@ -6,26 +6,18 @@ using System.Web;
 
 namespace VidlyPrototype.Models
 {
-    public class Rentals
+    public class NewRentals
     {
         public int Id { get; set; }
 
-        //Relationships
         [Required]
-        public int CustomerId { get; set; }
-        public Customer Customers { get; set; }
+        public Movie Movie { get; set; }
 
         [Required]
-        public int MovieId { get; set; }
-        public Movie Movies { get; set; }
-        //End of Relationship
+        public Customer Customer { get; set; }
+
         public DateTime DateRented { get; set; }
 
         public DateTime? DateReturned { get; set; }
-
-        public Rentals()
-        {
-            DateRented = DateTime.Now;
-        }
     }
 }

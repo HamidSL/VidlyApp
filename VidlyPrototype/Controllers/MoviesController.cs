@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using VidlyPrototype.Models;
 using VidlyPrototype.ViewModels;
 using System.Data.Entity;
+using Microsoft.AspNet.Identity;
 
 namespace VidlyPrototype.Controllers
 {
@@ -27,6 +28,8 @@ namespace VidlyPrototype.Controllers
         public ActionResult Index()
         {
             var movies = _context.Movies.Include(m => m.MovieGenres).ToList();
+
+            var custId = User.Identity.GetUserId();
 
             if(User.IsInRole(RoleName.IsAdministrator))
                 return View("Index", movies);

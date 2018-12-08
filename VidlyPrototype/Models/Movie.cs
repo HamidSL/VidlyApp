@@ -23,6 +23,8 @@ namespace VidlyPrototype.Models
         [Range(1, 50, ErrorMessage ="The Number in Stock value must be between 1 and 50")]
         public byte NoInStock { get; set; }
 
+        public byte NumberAvailable { get; set; }
+
         //Movies Table Relationship with MovieGenres
         [Display(Name="Movie Genres")]
         public int MovieGenresId { get; set; }
@@ -33,6 +35,7 @@ namespace VidlyPrototype.Models
         public Movie()
         {
             DateAdded = DateTime.Now;
+            NumberAvailable = NoInStock;
         }
     }
 }

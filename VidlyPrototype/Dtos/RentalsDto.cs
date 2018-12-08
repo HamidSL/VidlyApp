@@ -1,29 +1,30 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using VidlyPrototype.Models;
 
-namespace VidlyPrototype.Models
+namespace VidlyPrototype.Dtos
 {
-    public class Rentals
+    public class RentalsDto
     {
         public int Id { get; set; }
 
         //Relationships
-        [Required]
+        public CustomerDto Customers { get; set; }
+        
         public int CustomerId { get; set; }
-        public Customer Customers { get; set; }
 
-        [Required]
+        public MovieDto Movies { get; set; }
+        
         public int MovieId { get; set; }
-        public Movie Movies { get; set; }
-        //End of Relationship
+        //End of Relationships
+
         public DateTime DateRented { get; set; }
 
         public DateTime? DateReturned { get; set; }
 
-        public Rentals()
+        public RentalsDto()
         {
             DateRented = DateTime.Now;
         }

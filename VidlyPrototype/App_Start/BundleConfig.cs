@@ -13,8 +13,9 @@ namespace VidlyPrototype
                         "~/Scripts/bootstrap.js",
                         "~/Scripts/bootbox.js",
                         "~/Scripts/DataTables/jquery.datatables.js",
-                        "~/Scripts/DataTables/datatables.bootstrap4.js"
-                      ));
+                        "~/Scripts/DataTables/datatables.bootstrap4.js",
+                        "~/Scripts/typeahead.bundle.js",
+                        "~/Scripts/toastr.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.validate*"));
@@ -32,7 +33,9 @@ namespace VidlyPrototype
                       "~/Content/site.css",
                       "~/Content/styles.css",
                       "~/Content/DataTables/css/datatables.bootstrap4.css",
-                      "~/Content/fontawesome/all.css"));
+                      "~/Content/fontawesome/all.css",
+                      "~/Content/typeahead.css",
+                      "~/Content/toastr.css"));
         }
     }
 }
