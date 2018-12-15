@@ -1,0 +1,113 @@
+﻿@model VidlyPrototype.ViewModels.UserRentalsShowViewModel
+@using VidlyPrototype.Models
+@{
+    ViewBag.Title = Model.Customers.Name == null?"Show":Model.Customers.Name.ToUpper();
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section id="show-movie-section">
+    <div class="show-movie-inner container">
+        <div class="row">
+            <div class="col">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-lg-4">
+                                <div class="movie-details border-right border-2 p-2 pt-3 text-center">
+                                    <div class="d-flex flex-column">
+                                        <div class="align-content-center border-bottom p-3 mb-3">
+                                            <i class="fas fa-user-circle fa-10x text-primary"></i>
+                                        </div>
+
+                                        <h4 class="display-5 text-capitalize">@Model.Customers.Name</h4>
+                                        <ul class="list-unstyled text-capitalize small text-center">
+                                            <li>
+                                                <i class="fas fa-user" title="Membership Type"></i> <b>Membership Type: </b>@Model.Customers.MembershipTypes.Name
+                                            </li>
+                                            <li>
+                                                @{ 
+                                                    var isSubscribedToNewsletter = Model.Customers.IsSubscribedToNewsletter ? "far fa-thumbs-up text-primary" : "far fa-thumbs-down text-danger";
+                                                }
+                                                <i class="fas fa-newspaper" title="Newsletter Subscription"></i> <b>Newsletter Subscription: </b><i class="@isSubscribedToNewsletter"></i>
+                                            </li>
+                                            <li>
+                                                <i class="far fa-calendar-alt" title="Date of Birth"></i> <b>Date of Birth: </b> @Model.Customers.DateOfBirth.Value.ToString("d MMM yyyy")                               
+                                            </li>
+                                        </ul>
+                                        @if(User.Identity.IsAuthenticated && User.IsInRole(RoleName.IsAdministrator))
+                                        {
+                                            <a href="#" class="btn btn-lg btn-outline-primary">
+                                                <i class="fas fa-user-edit"></i> Edit Customer
+                                            </a>
+                                        }
+                                       
+                                        @* 
+                                            name, newsletterSubscription, MembershipType, DateofBirth    
+                                        *@
+                                        @*<p>
+                                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui at atque recusandae incidunt voluptas saepe!
+                                        </p>*@
+                                    </div>
+
+
+                                </div>
+
+                            </div>
+                            <div class="col-lg-8">
+                                <div class="movie-relations p-2 pt-3 text-center">
+                                    <h4 class="display-4 border-bottom my-3">Movies Rented...</h4>
+                                    @if (User.Identity.IsAuthenticated && User.IsInRole(RoleName.IsAdministrator))
+                                    {
+                                        if (Model.Rentals.Count > 0)
+                                        {
+                                            <div class="table-responsive">
+                                                <table class="table table-bordered table-hover">
+                                                    <thead class="thead-light">
+                                                        <tr>
+                                                            <th>Name</th>
+                                                            <th>Date Rented</th>
+                                                            <th>Return Date (ERD)</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        @foreach (var rental in Model.Rentals)
+                                                        {
+                                                            <tr>
+                                                                <td class="text-capitalize">
+                                                                    @Html.ActionLink(rental.Movie.Name, "Show", "Movies", new { id = rental.Movie.Id }, new { })
+                                                                </td>
+                                                                <td>@rental.DateRented.ToString("d MMM yyyy 'at' h:mtt")</td>
+                                                                @{
+                                                                    var DateReturned = !rental.DateReturned.HasValue ? "-" : rental.DateReturned.Value.ToString("d MMM yyyy 'at' h:mmtt");
+                                                                }
+                                                                <td>@DateReturned</td>
+
+                                                            </tr>
+                                                        }
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        }
+                                        else
+                                        {
+                                            <p class="h3 text-warning">
+                                                <i class="fas fa-exclamation-circle"></i> No Rentals Data Available
+                                            </p>
+                                        }
+                                    }
+                                    else
+                                    {
+                                        <p class="text-danger h3">
+                                            <i class="fas fa-user-lock"></i> Data Viewership Restricted
+                                        </p>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+

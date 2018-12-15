@@ -37,6 +37,25 @@ namespace VidlyPrototype.Controllers
             return View("ReadOnlyIndex", movies);
         }
 
+        public ActionResult Show(int id)
+        {
+            var movie = _context.Movies.Include(m => m.MovieGenres).SingleOrDefault(m => m.Id == id);
+
+            if (movie == null)
+                return HttpNotFound();
+
+            //Rented Relations
+            var rentalsData = _context.NewRentals.Include(r => r.Movie).Include(r => r.Customer).Where(r => r.Movie.Id == id).ToList();
+
+            var viewModel = new MovieRentalsShowViewModel
+            {
+                Movies = movie,
+                Rentals = rentalsData
+            };
+
+            return View(viewModel);
+        }
+
         //GET: Display create movie form
         [Authorize(Roles = RoleName.IsAdministrator)]
         public ActionResult Create()

@@ -35,6 +35,31 @@ namespace VidlyPrototype.Controllers
             return View("ReadOnlyIndex", customers);
         }
 
+        public ActionResult Show(int id)
+        {
+            var user = _context.Customers.Include(c => c.MembershipTypes).SingleOrDefault(c => c.Id == id);
+
+            if (user == null)
+                return HttpNotFound();
+
+            var rentalsData = _context.NewRentals.Include(r => r.Customer).Include(r => r.Movie).Where(r => r.Customer.Id == id).ToList();
+
+            
+            /*
+             What we want to achieve
+                -If rented data available, check genres and compare with others in db
+                -if not, display stuff in random
+             */
+            var viewModel = new UserRentalsShowViewModel
+            {
+                Customers = user,
+                Rentals = rentalsData
+
+            };
+
+            return View(viewModel);
+        }
+
         //GET: Create Form
         public ActionResult Create()
         {

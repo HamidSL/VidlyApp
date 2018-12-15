@@ -1,31 +1,241 @@
-﻿@{
-    ViewBag.Title = "Home Page";
+﻿@model IEnumerable<VidlyPrototype.Models.Movie>
+@{
+    ViewBag.Title = "Home";
 }
 
-<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
-</div>
+@* Daily Tech News Feeds Acquired using API From NewsApi Site *@
+<section id="news-feeds" class="bg-dark">
+    <div class="row">
+        <div class="col-md-2 d-none d-lg-block text-center">
+            <span class="p-2 news-label text-dark font-weight-bold d-block">
+                <i class="fas fa-stream"></i> Tech
+                Feeds
+            </span>
+        </div>
+        <div class="col-md-10 d-block">
+            <div class="py-2 text-center rss-display">
+                <div class="container">
+                    <!-- <span class="font-weight-bold align-left">Top Headlines:</span> -->
+                    <span class="small movie-rss">
 
-<div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
+                    </span>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
+</section>
+
+@* Carousel of Now Showing Movies(In Theatres) Acquired Data from The Movie DB *@
+<section id="movie-carousel-section">
+    <div class="movie-carousel-inner">
+        <div class="row">
+            <div class="col">
+                <div class="carousel slide text-dark" data-ride="carousel" id="movies-slide">
+                    <ul class="carousel-indicators">
+                        <li data-target="#movies-slide" data-slide-to="0" class="active"></li>
+                        <li data-target="#movies-slide" data-slide-to="1"></li>
+                        <li data-target="#movies-slide" data-slide-to="2"></li>
+                        <li data-target="#movies-slide" data-slide-to="3"></li>
+                    </ul>
+
+                    <div class="carousel-inner text-light">
+                        <div class="carousel-item movie-image-1 active">
+                            <div class="carousel-caption text-left movie-caption-1 d-none d-sm-block">
+
+                            </div>
+                        </div>
+                        <div class="carousel-item movie-image-2">
+                            <div class="carousel-caption text-left movie-caption-2 d-none d-sm-block">
+
+                            </div>
+                        </div>
+                        <div class="carousel-item movie-image-3">
+                            <div class="carousel-caption text-left movie-caption-3 d-none d-sm-block">
+
+                            </div>
+                        </div>
+                        <div class="carousel-item movie-image-4">
+                            <div class="carousel-caption text-left movie-caption-4 d-none d-sm-block">
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--Arrows-->
+                    <a href="#movies-slide" data-slide="prev" class="carousel-control-prev">
+                        <span class="carousel-control-prev-icon"></span>
+                    </a>
+                    <a href="#movies-slide" data-slide="next" class="carousel-control-next">
+                        <span class="carousel-control-next-icon"></span>
+                    </a>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
+</section>
+
+@* Daily Trending Movies Section Acquired From The Movie DB With API *@
+<section id="trending-daily-section" class="bg-light px-5">
+    <div class="trending-daily-inner">
+        <div class="row">
+            <div class="col">
+                <h4 class="display-5 border-bottom p-2 my-3">Trending Today</h4>
+            </div>
+        </div>
+        <div class="row ">
+            <div class="col">
+                <div class="card-deck p-2 mb-1 text-light text-center" id="api-movies">
+
+                </div>
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <div class="p-2 mb-2">
+                    <span class="small text-muted border-right border-2 mr-2 p-2">Courtesy of TMdb</span>
+                    <span>
+                        <a href="https://www.themoviedb.org/" target="_blank">
+                            <img src="~/Content/Images/tmdb_logo.png" alt="TMdb-Logo" height="30">
+                        </a>
+                    </span>
+                </div>
+            </div>
+        </div>
     </div>
-</div>
+</section>
+
+@* New Release Section - Latest Uploaded Movies in Application Database By Admin *@
+<section id="new-releases-section" class="bg-light px-5">
+    <div class="new-releases-inner">
+        <div class="row">
+            <div class="col">
+                <h4 class="display-5 border-bottom p-2 my-3">Latest Publications</h4>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <div class="card-deck p-2 mb-1 text-light text-center">
+                    @foreach (var movie in Model)
+                    {
+                        <div class="card card-movie-1">
+                            <img src="~/Content/Images/no_image.jpg" alt="@movie.Name-poster" class="rounded img-fluid">
+                            <div class="dark-overlay rounded-top"></div>
+                            <div class="card-img-overlay">
+                                <small class="font-weight-bold text-capitalize">
+                                    @Html.ActionLink(movie.Name, "Show", "Movies", new { id = movie.Id}, new { })
+                                </small>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <div class="p-2 mb-2">
+                    <span class="small text-muted border-right border-2 mr-2 p-2">
+                        Courtesy of RAMdb
+                    </span>
+                    @Html.ActionLink("View More >>", "Index", "Movies", null, new { @class="small text-primary text-right"})
+                    @*<a href="#" class="small text-primary text-right">View More >></a>*@
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@* Movie Details Modal - Data Acquired From The Movie DB *@
+<section id="movie-details-modal" class="modal fade">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                    <i class="far fa-times-circle"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row mb-3 border-bottom pb-2">
+                    <div class="col">
+                        <!-- <h4 class="display-5 border-bottom py-2 mb-3">Avengers: Infinity War - Trailer</h4> -->
+                        <!-- <video controls class="movie-trailer">
+                        <source src="video/sample.MP4" type="video/mp4" class="img-fluid">
+                    </video> -->
+                        <div class="movie-trailer-wrapper">
+                            <iframe src="" 
+                                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" frameborder="0"
+                                allowfullscreen></iframe>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 poster-space mb-2">
+
+                    </div>
+                    <div class="col-md-8 movie-details-space">
+                        <h3 class="display-5"></h3>
+                        <p>
+                            <span class="small">
+                                <i class="far fa-comment"></i> <span class="movie-language"> </span>
+                                <span class="border-left border-right px-2">
+                                    <i class="far fa-calendar-alt"></i> <span class="movie-release-date"></span>
+                                </span>
+                                <span class="pr-2">
+                                    <i class="far fa-star"></i>
+                                    <span class="movie-rating"></span>
+                                </span>
+                                <span>
+                                    <i class="far fa-clock"></i><span class="movie-runtime"></span>
+                                </span>
+                            </span>
+                        </p>
+                        <p class="movie-description">
+
+                        </p>
+                        <p>
+                            <span class="small">
+                                <i class="fas fa-theater-masks"></i> <b>Genre:</b> <span class="movie-genre"></span><br>
+                                <i class="fas fa-users"></i> <b>Stars:</b> <span class="movie-stars"></span> <br>
+                                <i class="fas fa-globe-africa"></i> <b>Country:</b> <span class="movie-country"></span>
+                            </span>
+                        </p>
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col">
+                        <!-- <h4 class="display-5 border-bottom py-2 mb-3">User Rentals</h4>
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-striped table-hover">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Date Borrowed</th>
+                                    <th>Return Date(EDR)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>John Doe</td>
+                                    <td>1 Jan 2013 at 12:30pm</td>
+                                    <td>25 Jan 2013 at 12:00pm</td>
+                                </tr>
+                                <tr>
+                                    <td>Jane Doe</td>
+                                    <td>1 Apr 2013 at 12:30pm</td>
+                                    <td>25 Apr 2013 at 12:00pm</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>
+
+@section scripts
+{
+    <script src="~/Scripts/CustomScript.js"></script>
+}
