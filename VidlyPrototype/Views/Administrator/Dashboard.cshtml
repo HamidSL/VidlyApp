@@ -1,0 +1,203 @@
+﻿@model VidlyPrototype.ViewModels.DashboardDataViewModel
+@{
+    ViewBag.Title = "Dashboard";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    int custCount, movCount, userCount, x = 0;
+    int y = 6;
+
+    custCount = Model.Customers.Any() ? Model.Customers.Count() : 0;
+    movCount = Model.Movies.Any() ? Model.Movies.Count() : 0;
+    userCount = Model.Users.Any() ? Model.Users.Count() : 0;
+
+
+}
+
+<section id="page-title" class="bg-primary">
+    <div class="page-title-inner text-white container">
+        <div class="row">
+            <div class="col">
+                <h4 class="display-4 p-2">
+                    <i class="fas fa-tachometer-alt"></i> Dashboard
+                </h4>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="data-display">
+    <div class="data-display-inner container">
+        <div class="row mb-3 text-center text-white">
+            <div class="col-md-3">
+                <div class="card bg-info">
+                    <div class="card-body">
+                        <h3>Customers</h3>
+                        <h4 class="display-4">
+                            <i class="far fa-folder"></i> @custCount
+                        </h4>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card bg-success">
+                    <div class="card-body">
+                        <h3>Users</h3>
+                        <h4 class="display-4">
+                            <i class="fas fa-users"></i> @userCount
+                        </h4>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card bg-primary">
+                    <div class="card-body">
+                        <h3>Movies</h3>
+                        <h4 class="display-4">
+                            <i class="fas fa-film"></i> @movCount
+                        </h4>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card bg-danger">
+                    <div class="card-body">
+                        <h3>Movies Rented</h3>
+                        <h4 class="display-4">
+                            @{ 
+                                var rentedTotals = 0;
+
+                                foreach(var rentedData in Model.Movies)
+                                {
+                                    rentedTotals += rentedData.NoInStock - rentedData.NumberAvailable;
+                                }
+                            }
+                            <i class="fas fa-tags"></i> @rentedTotals
+                        </h4>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <h3 class="display-5 border-bottom border-2 py-2 mb-3">Rentals</h3>
+                <canvas id="rentals-chart">
+                    <!---Rentals chart goes here-->
+                </canvas>
+            </div>
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h3 class="display-5 border-bottom border-2 py-2 mb-3">Movie Genres</h3>
+                        <canvas id="xmovie-genres-chart">
+                            <!--Movie Genres pie goes here-->
+                        </canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h3 class="display-5 border-bottom py-2 mb-3">Most Recent Customers</h3>
+                        @if (custCount > 0)
+                        {
+                            <div class="table-responsive-md">
+                                <table class="table table-hover table-bordered table-striped">
+                                    <thead class="bg-info">
+                                        <tr>
+                                            <th>Name</th>
+                                            <th>Membership Type</th>
+                                            <th>Date of Birth</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+
+                                        @foreach (var customer in Model.Customers)
+                                        {
+                                            if (x < y)
+                                            {
+                                                <tr>
+                                                    <td class="text-capitalize">@customer.Name</td>
+                                                    <td>@customer.MembershipTypes.Name</td>
+                                                    @{
+                                                        var dob = customer.DateOfBirth.HasValue ? customer.DateOfBirth.Value.ToString("d MMM yyyy h:mmtt") : " - ";
+                                                    }
+                                                    <td>@dob</td>
+                                                </tr>
+                                            x++;
+                                        }
+
+                                    }
+
+
+                                    </tbody>
+                                </table>
+                            </div>
+                            }
+                            else
+                            {
+                                <p class="text-center h5 text-info">
+                                    <i class="fas fa-info"></i> No Customer Data Available
+                                </p>
+                            }
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h3 class="display-5 border-bottom py-2 mb-3">Recently Added Movies</h3>
+                        @if (movCount > 0)
+                        {
+                            <div class="table-responsive-sm">
+                                <table class="table table-hover table-bordered table-striped">
+                                    <thead class="bg-primary">
+                                        <tr>
+                                            <th>Name</th>
+                                            <th>Genre</th>
+                                            @*<th>Release Date</th>*@
+                                            @*<th>Date Added</th>*@
+                                            <th>InStock</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="text-center">
+                                        @{ x = 0;}
+                                        @foreach (var movie in Model.Movies)
+                                        {
+
+                                            if (x < y)
+                                            {
+                                                <tr>
+                                                    <td class="text-capitalize">@movie.Name</td>
+                                                    <td class="text-capitalize">@movie.MovieGenres.Name</td>
+                                                    @*<td>@movie.ReleaseDate.ToString("d MMM yyyy h:mmtt")</td>*@
+                                                    @*<td>@movie.DateAdded.ToString("d MMM yyyy h:mmtt")</td>*@
+                                                    <td>@movie.NumberAvailable/@movie.NoInStock</td>
+                                                </tr>
+                                               
+                                            }
+                                            x++;
+
+                                        }
+
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        }
+                        else
+                        {
+                            <p class="text-center h5 text-info">
+                                <i class="fas fa-info"></i> No Movie Data Available
+                            </p>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+

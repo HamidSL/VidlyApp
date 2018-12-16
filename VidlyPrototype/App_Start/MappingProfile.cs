@@ -25,6 +25,10 @@ namespace VidlyPrototype.App_Start
             //Rentals
             Mapper.CreateMap<Rentals, RentalsDto>();
             Mapper.CreateMap<RentalsDto, Rentals>();
+
+            //Notifications
+            Mapper.CreateMap<Notifications, NotificationsDto>();
+            Mapper.CreateMap<NotificationsDto, Notifications>();
         }
     }
 }

@@ -7,6 +7,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using VidlyPrototype.Models;
+using System.Data.Entity;
 
 namespace VidlyPrototype.Controllers
 {
@@ -15,10 +16,13 @@ namespace VidlyPrototype.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
+        ApplicationDbContext _context;
 
         public ManageController()
         {
+            _context = new ApplicationDbContext();
         }
+
 
         public ManageController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
         {
@@ -64,8 +68,12 @@ namespace VidlyPrototype.Controllers
                 : "";
 
             var userId = User.Identity.GetUserId();
+
+            var rentals = _context.UserRentals.Include(r => r.Movie).Include(r => r.Users).Where(r => r.Users.Id == userId).ToList();
+            
             var model = new IndexViewModel
             {
+                UserRentals = rentals,
                 HasPassword = HasPassword(),
                 PhoneNumber = await UserManager.GetPhoneNumberAsync(userId),
                 TwoFactor = await UserManager.GetTwoFactorEnabledAsync(userId),
@@ -328,6 +336,7 @@ namespace VidlyPrototype.Controllers
             {
                 _userManager.Dispose();
                 _userManager = null;
+                _context.Dispose();
             }
 
             base.Dispose(disposing);

@@ -1,15 +1,110 @@
 ﻿@model VidlyPrototype.Models.IndexViewModel
+@using Microsoft.AspNet.Identity
 @{
-    ViewBag.Title = "Manage";
+    ViewBag.Title = "User Profile";
+    var name = User.Identity.GetUserName() != null ? User.Identity.GetUserName() : null;
 }
 
-<h2>@ViewBag.Title.</h2>
+<section id="show-movie-section">
+    <div class="show-movie-inner container">
+        <div class="row">
+            <div class="col">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-lg-4">
+                                <div class="movie-details border-right border-2 p-2 pt-3 text-center">
+                                    <div class="d-flex flex-column">
+                                        <div class="align-content-center border-bottom p-3 mb-3">
+                                            <img src="~/Content/Images/user-image-2.jpg" alt="movie-name" class="img-fluid rounded-circle" height="200" width="200">
+                                        </div>
 
-<p class="text-success">@ViewBag.StatusMessage</p>
+                                        <h4 class="display-5 text-capitalize">@name.Substring(0, name.IndexOf(@"@"))</h4>
+                                        <h6 class="small"><i class="far fa-paper-plane"></i> @name</h6>
+                                        <div class="align-content-center mt-3">
+                                            @if (Model.HasPassword)
+                                            {
+                                                
+                                                @Html.ActionLink(" Change Password", "ChangePassword", null, new { @class="btn btn-outline-success btn-block"})
+                                            }
+                                            else
+                                            {
+                                                @Html.ActionLink("Create Password", "SetPassword", null, new { @class = "btn btn-outline-danger btn-block" })
+                                            }
+
+
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                            <div class="col-lg-8">
+                                <div class="movie-relations border-right border-2 p-2 pt-3 text-center">
+                                    <h4 class="display-4 border-bottom my-3">Movies Rented...</h4>
+                                    @if (User.Identity.IsAuthenticated)
+                                    {
+                                        if (Model.UserRentals.Count() > 0)
+                                        {
+                                            <div class="table-responsive">
+                                                <table class="table table-bordered table-hover">
+                                                    <thead class="thead-light">
+                                                        <tr>
+                                                            <th>Name</th>
+                                                            <th>Date Rented</th>
+                                                            <th>Return Date (ERD)</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody class="text-capitalize">
+                                                        @foreach (var rental in Model.UserRentals)
+                                                        {
+                                                            <tr>
+                                                                <td>@rental.Movie.Name</td>
+                                                                <td>@rental.DateRented.ToString("d MMM yyyy 'at' h:mmtt")</td>
+                                                                <td>
+                                                                    @{
+                                                                        var dateReturned = rental.DateReturned.HasValue ? rental.DateReturned.Value.ToString("d MMM yyyy 'at' h:mmtt") : "-";
+
+                                                                    }
+                                                                    @dateReturned
+                                                                </td>
+                                                            </tr>
+                                                        }
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        }
+                                        else
+                                        {
+                                            <p class="h3 text-warning">
+                                                <i class="fas fa-exclamation-circle"></i> No Rentals Data Available
+                                            </p>
+                                        }
+                                    }
+                                    else
+                                    {
+                                        <p class="text-danger h3">
+                                            <i class="fas fa-user-lock"></i> Please Access You Account To View This Page
+                                        </p>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+@*<p class="text-success">@ViewBag.StatusMessage</p>*@
 <div>
-    <h4>Change your account settings</h4>
-    <hr />
-    <dl class="dl-horizontal">
+
+
+    @*<h4>Change your account settings</h4>
+        <hr />*@
+    @*<dl class="dl-horizontal">
         <dt>Password:</dt>
         <dd>
             [
@@ -27,61 +122,61 @@
         <dd>
             @Model.Logins.Count [
             @Html.ActionLink("Manage", "ManageLogins") ]
+        </dd>*@
+    @*
+        Phone Numbers can used as a second factor of verification in a two-factor authentication system.
+
+         See <a href="https://go.microsoft.com/fwlink/?LinkId=403804">this article</a>
+            for details on setting up this ASP.NET application to support two-factor authentication using SMS.
+
+         Uncomment the following block after you have set up two-factor authentication
+    *@
+    @*
+        <dt>Phone Number:</dt>
+        <dd>
+            @(Model.PhoneNumber ?? "None")
+            @if (Model.PhoneNumber != null)
+            {
+                <br />
+                <text>[&nbsp;&nbsp;@Html.ActionLink("Change", "AddPhoneNumber")&nbsp;&nbsp;]</text>
+                using (Html.BeginForm("RemovePhoneNumber", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                {
+                    @Html.AntiForgeryToken()
+                    <text>[<input type="submit" value="Remove" class="btn-link" />]</text>
+                }
+            }
+            else
+            {
+                <text>[&nbsp;&nbsp;@Html.ActionLink("Add", "AddPhoneNumber")
+            }
         </dd>
-        @*
-            Phone Numbers can used as a second factor of verification in a two-factor authentication system.
-             
-             See <a href="https://go.microsoft.com/fwlink/?LinkId=403804">this article</a>
-                for details on setting up this ASP.NET application to support two-factor authentication using SMS.
-             
-             Uncomment the following block after you have set up two-factor authentication
-        *@
-        @*  
-            <dt>Phone Number:</dt>
-            <dd>
-                @(Model.PhoneNumber ?? "None")
-                @if (Model.PhoneNumber != null)
-                {
-                    <br />
-                    <text>[&nbsp;&nbsp;@Html.ActionLink("Change", "AddPhoneNumber")&nbsp;&nbsp;]</text>
-                    using (Html.BeginForm("RemovePhoneNumber", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-                    {
-                        @Html.AntiForgeryToken()
-                        <text>[<input type="submit" value="Remove" class="btn-link" />]</text>
-                    }
-                }
-                else
-                {
-                    <text>[&nbsp;&nbsp;@Html.ActionLink("Add", "AddPhoneNumber")
-                }
-            </dd>
-        *@
-        <dt>Two-Factor Authentication:</dt>
+    *@
+    @*<dt>Two-Factor Authentication:</dt>
         <dd>
             <p>
                 There are no two-factor authentication providers configured. See <a href="https://go.microsoft.com/fwlink/?LinkId=403804">this article</a>
                 for details on setting up this ASP.NET application to support two-factor authentication.
-            </p>
-            @*@if (Model.TwoFactor)
-                {
-                    using (Html.BeginForm("DisableTwoFactorAuthentication", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-                    {
-                        @Html.AntiForgeryToken()
-                        <text>Enabled
-                        <input type="submit" value="Disable" class="btn btn-link" />
-                        </text>
-                    }
-                }
-                else
-                {
-                    using (Html.BeginForm("EnableTwoFactorAuthentication", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-                    {
-                        @Html.AntiForgeryToken()
-                        <text>Disabled
-                        <input type="submit" value="Enable" class="btn btn-link" />
-                        </text>
-                    }
-                }*@
-        </dd>
-    </dl>
+            </p>*@
+    @*@if (Model.TwoFactor)
+        {
+            using (Html.BeginForm("DisableTwoFactorAuthentication", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+            {
+                @Html.AntiForgeryToken()
+                <text>Enabled
+                <input type="submit" value="Disable" class="btn btn-link" />
+                </text>
+            }
+        }
+        else
+        {
+            using (Html.BeginForm("EnableTwoFactorAuthentication", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+            {
+                @Html.AntiForgeryToken()
+                <text>Disabled
+                <input type="submit" value="Enable" class="btn btn-link" />
+                </text>
+            }
+        }*@
+    @*</dd>
+        </dl>*@
 </div>

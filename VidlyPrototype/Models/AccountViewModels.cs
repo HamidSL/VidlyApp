@@ -48,6 +48,7 @@ namespace VidlyPrototype.Models
 
     public class LoginViewModel
     {
+
         [Required]
         [Display(Name = "Email")]
         [EmailAddress]

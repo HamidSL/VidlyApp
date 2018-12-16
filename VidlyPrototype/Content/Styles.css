@@ -17,6 +17,44 @@ input.error{
 .navbar {
     border-bottom: solid 3px #ba4a00;
 }
+.notification-display {
+    min-width: 270px;
+    overflow-x: hidden;
+    max-height: 350px;
+    overflow-y: auto;
+    padding-right: 10px;
+}
+
+.user-display {
+    min-width: 200px;
+    overflow-x: hidden;
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+    .user-display .content-flex > * {
+        align-self: center;
+    }
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+.dropdown-toggle::after {
+    display: none;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #ba4a00;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #dc7633;
+}
 
 body {
     max-width: 100%;
@@ -165,4 +203,8 @@ body {
     width: 100%;
     background: #f5f5f5;
     line-height: 60px;
+}
+
+#notifications-display .notifications-display-inner {
+    padding-top: 50px;
 }

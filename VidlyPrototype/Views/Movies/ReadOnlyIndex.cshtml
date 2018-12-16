@@ -19,6 +19,7 @@
                             <tr>
                                 <th>Name</th>
                                 <th>Genre</th>
+                                <th></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -63,9 +64,40 @@
                         render: function (data) {
                             return "<span class='text-capitalize'>" + data + "</span>";
                         }
+                    },
+                    {
+                        data: "name",
+                        render: function (data, type, movies) {
+                            return "<button class='btn btn-link js-movie-rent' data-movie-id='" + movies.id + "'><i class='fas fa-shopping-basket text-success'></i> Rent</button>";
+                        }
                     }
 
                 ]
+            });
+
+            $("#movies").on('click', ".js-movie-rent", function (e) {
+                e.preventDefault();
+
+                var button = $(this);
+                bootbox.confirm("Are you sure you want to rent this movie?", function (result) {
+                    if (result) {
+                        $.ajax({
+                            url: "/api/userRentals/",
+                            method: "POST",
+                            data: { "movieId": button.attr("data-movie-id") },
+                            success: function () {
+                                //table.row(button.children("i").removeClass('fa-shopping-basket text-danger').addClass('fa-checkbox')).remove().draw();
+                                toastr.success("Movie Added To Your Rentals List");
+                            },
+                            error: function (x) {
+                                console.log(x.status);
+                                if (x.statusCode != 201)
+                                    toastr.error("Movie Not Added To Your Rentals List");
+                            }
+                        });
+                    }
+                });
+
             });
         });
     </script>
