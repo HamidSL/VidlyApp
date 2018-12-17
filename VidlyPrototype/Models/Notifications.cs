@@ -15,6 +15,10 @@ namespace VidlyPrototype.Models
 
         public ApplicationUser User { get; set; }
 
+        public int MovieId { get; set; }
+
+        public Movie Movie { get; set; }
+
         [Required]
         public string Message { get; set; }
 

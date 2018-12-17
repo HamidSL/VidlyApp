@@ -23,48 +23,64 @@ namespace VidlyPrototype.Controllers.Api
         [HttpPost]
         public IHttpActionResult SendNotifications(NotificationsDto notificationsDto)
         {
-            var DateData = _context.UserRentals.Include(u => u.Movie).Include(u => u.Users).ToList();
+            var user = _context.Users.SingleOrDefault(u => u.Id == notificationsDto.UserId);
+            if (user == null)
+                return BadRequest();
 
-            //date returned, user data, movie data
-            foreach(var data in DateData)
+            var movie = _context.Movies.SingleOrDefault(m => m.Id == notificationsDto.MovieId);
+            if (movie == null)
+                return BadRequest();
+
+            var rentals = _context.UserRentals.SingleOrDefault(u => u.Movie.Id == notificationsDto.MovieId && u.Users.Id == notificationsDto.UserId);
+            int dateDifference = 0;
+
+            if (rentals == null)
+                return BadRequest();
+
+            dateDifference = rentals.DateReturned.HasValue ? Convert.ToInt32(rentals.DateReturned.Value.Subtract(DateTime.Now).TotalDays) : 0;
+
+            if (notificationsDto.Message == null)
+                notificationsDto.Message = string.Format("Your rental subscription for the movie {0} ends in {1} days", rentals.Movie.Name.ToUpper(), dateDifference);
+
+            var notify = new Notifications
             {
-                if (data.DateReturned.HasValue)
-                {
-                    var dateDifference = data.DateReturned.Value.Subtract(DateTime.Now);
+                DateReceived = DateTime.Now,
+                DateRead = DateTime.Now,
+                Movie = movie,
+                User = user,
+                Message = notificationsDto.Message,
+                HasBeenRead = true
 
-                    if(int.Parse(dateDifference.TotalDays.ToString()) <= 5)
-                    {
-                        //send message
-                        var notification = new Notifications
-                        {
-                            DateReceived = DateTime.Now,
-                            DateRead = DateTime.Now,
-                            HasBeenRead = false,
-                            User = data.Users,
-                            UserId = data.Users.Id,
-                            Message = "You have " + int.Parse(dateDifference.TotalDays.ToString()) + " left to return " + data.Movie.Name.ToUpper(),
-                        };
+            };
 
-                        //add to db
-                        _context.Notifications.Add(notification);
-                    }
-                }
-            }
+
+            _context.Notifications.Add(notify);
             _context.SaveChanges();
 
+
             return Ok();
+        }
+
+        //GET api/notifications/x/1
+        public IHttpActionResult GetNotifications(string userId, int movieId)
+        {
+            var notifiedData = _context.Notifications.SingleOrDefault(n => n.MovieId == movieId && n.UserId == userId);
+
+            if (notifiedData == null)
+                return NotFound();
+
+            return Ok(Mapper.Map<Notifications, NotificationsDto>(notifiedData));
+                
         }
 
         //GET api/notifications
         public IEnumerable<NotificationsDto> GetNotifications()
         {
-            var notifications = _context.Notifications.Include(n => n.User)
-                    .Where(n => n.User.UserName == User.Identity.Name).ToList().Select(Mapper.Map<Notifications, NotificationsDto>);
+            var notifications = _context.Notifications.Where(n => n.User.UserName == User.Identity.Name && n.HasBeenRead == false)
+                                .Select(Mapper.Map<Notifications, NotificationsDto>);
+            
 
             return notifications;
-
-            //return _context.Notifications.Include(m => m.User).ToList()
-            //        .Select(Mapper.Map<Rentals, RentalsDto>);
         }
     }
 }

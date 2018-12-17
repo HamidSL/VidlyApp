@@ -53,7 +53,20 @@ namespace VidlyPrototype.Controllers
 
         public ActionResult RentalsManager()
         {
-            return View("Rentals");
+            //customer rentals
+            var rentals = _context.NewRentals.Include(r => r.Customer).Include(r => r.Movie).ToList();
+
+            //user rentals
+            var userRentals = _context.UserRentals.Include(nr => nr.Movie).Include(nr => nr.Users).ToList();
+
+            var viewModel = new DashboardDataViewModel
+            {
+                
+                UserRentals = userRentals,
+                Rentals = rentals
+            };
+
+            return View("Rentals", viewModel);
         }
     }
 }

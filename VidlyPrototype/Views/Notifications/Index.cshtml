@@ -17,7 +17,7 @@
                                 {
                                     foreach (var message in Model)
                                     {
-                                        var hasBeenRead = message.HasBeenRead ? "bg-secondary" : "bg-light";
+                                        var hasBeenRead = message.HasBeenRead ? "" : "bg-light";
 
                                         <li class="list-group-item border-0 @hasBeenRead">
                                             <div class="d-flex">
@@ -37,9 +37,12 @@
                                 }
                                 else
                                 {
-                                    <p class="h5 text-info">
-                                        <i class="fas fa-info-circle"></i> There are no notifications at the moment
-                                    </p>
+                                    <li>
+                                        <p class="h5 text-info">
+                                            <i class="fas fa-info-circle"></i> There are no notifications at the moment
+                                        </p>
+                                    </li>
+                                    
                                 }
                             </ul>
                         </div>
