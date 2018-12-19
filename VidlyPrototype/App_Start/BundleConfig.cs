@@ -35,7 +35,8 @@ namespace VidlyPrototype
                       "~/Content/DataTables/css/datatables.bootstrap4.css",
                       "~/Content/fontawesome/all.css",
                       "~/Content/typeahead.css",
-                      "~/Content/toastr.css"));
+                      "~/Content/toastr.css",
+                      "~/Content/authstyles.css"));
         }
     }
 }

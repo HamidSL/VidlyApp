@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AutoMapper;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -22,17 +23,25 @@ namespace VidlyPrototype.Controllers.Api
         [HttpPost]
         public IHttpActionResult CreateNewRentals(UserRentalsDto userRentalsDto)
         {
+            //what we have to do, check if rentals exists in the db, if exists with the same movie and username, deny rentals else accept
             var user = _context.Users.SingleOrDefault(u => u.UserName == User.Identity.Name);
 
             if (user == null)
-                return BadRequest("Access Denied! Please Log In To Perform This Action");
+                return Content(HttpStatusCode.BadRequest, "Access Denied! Please Log In To Perform This Action");
 
             var movie = _context.Movies.SingleOrDefault(m => userRentalsDto.MovieId == m.Id);
 
-            if (movie.NumberAvailable == 0)
-                return BadRequest("Movie is not available at the moment");
+            //if (movie.NumberAvailable == 0)
+            //    return Content(HttpStatusCode.BadRequest, "Movie is not available at");
 
-            movie.NumberAvailable--;
+            //movie.NumberAvailable--;
+
+            //check if user and movie exists in user rentals already
+            var rentalExists = _context.UserRentals.SingleOrDefault(r => r.Users.Id == user.Id && r.Movie.Id == userRentalsDto.MovieId);
+
+            //if rentals exists is not  equal to null
+            if (rentalExists != null)
+                return Content(HttpStatusCode.BadRequest, "You already have this movie in your rentals list");
 
             var rental = new UserRentals
             {
@@ -57,6 +66,19 @@ namespace VidlyPrototype.Controllers.Api
                 add to userrentals table
              */
             return Ok();
+        }
+
+        
+        //GET api/notifications/1
+        public IHttpActionResult GetUserRentals(int id)
+        {
+            var notifiedData = _context.UserRentals.SingleOrDefault(n => n.Movie.Id == id && n.Users.UserName == User.Identity.Name);
+
+            if (notifiedData == null)
+                return NotFound();
+
+            return Ok(Mapper.Map<UserRentals, UserRentalsDto>(notifiedData));
+
         }
 
     }

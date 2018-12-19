@@ -67,12 +67,19 @@
                         };
 
                         var actorHolder = "";
+                        var castLimit = 5;
+
                         data.cast.forEach(function (value, key) {
 
                             actor.character.push(value['character']);
                             actor.name.push(value['name']);
-                            if (key < 5)
-                                actorHolder += value['name'] + ", ";
+                            if (key < castLimit) {
+                                if (key != castLimit - 1)
+                                    actorHolder += value['name'] + ", ";
+                                else
+                                    actorHolder += value['name'];
+                            }
+                                
 
 
                         });
@@ -213,6 +220,8 @@
                             data.genres.forEach(function (value, key) {
                                 if (key != data.genres.length - 1)
                                     genresContainer += value['name'] + ", ";
+                                else
+                                    genresContainer += value['name'];
                             });
 
                             captionData += "<i class='fas fa-theater-masks'></i> " + genresContainer;

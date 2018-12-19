@@ -180,7 +180,7 @@
                     data: { "userId": button.attr('data-user-id'), "movieId": button.attr('data-movie-id'), "message": null },
                     success: function (data) {
                         toastr.success("Notification Sent To User");
-                        button.addClass('disabled');
+                        button.addClass('disabled').html("<i class='fa fa-check'></i><i>Informed</i>");
                     },
                     error: function (x) {
                         console.log(x.status);

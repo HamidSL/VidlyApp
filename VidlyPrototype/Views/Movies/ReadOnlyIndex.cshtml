@@ -32,6 +32,7 @@
                                 }*@
                         </tbody>
                     </table>
+                    
                 </div>
                 @*}
                     else
@@ -75,6 +76,8 @@
                 ]
             });
 
+            
+
             $("#movies").on('click', ".js-movie-rent", function (e) {
                 e.preventDefault();
 
@@ -86,15 +89,38 @@
                             method: "POST",
                             data: { "movieId": button.attr("data-movie-id") },
                             success: function () {
-                                //table.row(button.children("i").removeClass('fa-shopping-basket text-danger').addClass('fa-checkbox')).remove().draw();
+                                table.row(button.addClass('disabled').html("<i class='fa fa-check'></i> Rented"));
                                 toastr.success("Movie Added To Your Rentals List");
                             },
-                            error: function (x) {
-                                console.log(x.status);
-                                if (x.statusCode != 201)
-                                    toastr.error("Movie Not Added To Your Rentals List");
+                            error: function (x, y, j) {
+                                //console.log(x.responseJSON);
+
+                                toastr.error(x.responseJSON);
                             }
                         });
+                    }
+                });
+
+            });
+
+            $("#movies .js-movie-rent").each(function (x, y) {
+                var informer = $(this);
+
+                var movieId = informer.attr('data-movie-id');
+
+                console.log(informer);
+
+                $.ajax({
+                    url: "/api/userRentals/".concat(movieId),
+                    method: "GET",
+                    success: function (data) {
+                        console.log(movieId);
+                        if (data != null) {
+                            informer.addClass('disabled').html("<i class='fa fa-check'></i><i>Rented</i>");
+                        }
+                    },
+                    error: function (x) {
+                        console.log(x.status);
                     }
                 });
 

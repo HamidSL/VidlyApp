@@ -45,11 +45,10 @@ namespace VidlyPrototype.Controllers.Api
             var notify = new Notifications
             {
                 DateReceived = DateTime.Now,
-                DateRead = DateTime.Now,
                 Movie = movie,
                 User = user,
                 Message = notificationsDto.Message,
-                HasBeenRead = true
+                HasBeenRead = false
 
             };
 
@@ -76,11 +75,29 @@ namespace VidlyPrototype.Controllers.Api
         //GET api/notifications
         public IEnumerable<NotificationsDto> GetNotifications()
         {
-            var notifications = _context.Notifications.Where(n => n.User.UserName == User.Identity.Name && n.HasBeenRead == false)
+            var notifications = _context.Notifications.Where(n => n.User.UserName == User.Identity.Name && n.HasBeenRead == false).OrderByDescending(n => n.DateReceived)
                                 .Select(Mapper.Map<Notifications, NotificationsDto>);
             
 
             return notifications;
+        }
+
+        //what will we pass in
+        //user id only which will in turn check for all notifications belonging to that user id and mark them as read and then add date
+        [HttpPut]
+        public IHttpActionResult SetAllToRead()
+        {
+            var setToRead = _context.Notifications.SingleOrDefault(n => n.User.UserName == User.Identity.Name);
+
+            if (setToRead == null)
+                return NotFound();
+
+            setToRead.HasBeenRead = true;
+            setToRead.DateRead = DateTime.Now;
+
+            _context.SaveChanges();
+
+            return Ok();
         }
     }
 }

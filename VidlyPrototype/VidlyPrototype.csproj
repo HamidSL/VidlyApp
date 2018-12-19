@@ -345,6 +345,14 @@
     <Compile Include="Migrations\201812162144275_RelateMovieTableToNotifications.Designer.cs">
       <DependentUpon>201812162144275_RelateMovieTableToNotifications.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201812181329531_ChangeDateReadPropertyInNotificationsTable.cs" />
+    <Compile Include="Migrations\201812181329531_ChangeDateReadPropertyInNotificationsTable.Designer.cs">
+      <DependentUpon>201812181329531_ChangeDateReadPropertyInNotificationsTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201812181824225_ChangeHasBeenReadInNotificationsTable.cs" />
+    <Compile Include="Migrations\201812181824225_ChangeHasBeenReadInNotificationsTable.Designer.cs">
+      <DependentUpon>201812181824225_ChangeHasBeenReadInNotificationsTable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AgeRestrictionCustomValidation.cs" />
@@ -369,6 +377,7 @@
     <Compile Include="ViewModels\UserRentalsShowViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\AuthStyles.css" />
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
     <Content Include="Content\bootstrap-reboot.css" />
@@ -546,8 +555,12 @@
     <Content Include="Content\fontawesome\svg-with-js.min.css" />
     <Content Include="Content\fontawesome\v4-shims.css" />
     <Content Include="Content\fontawesome\v4-shims.min.css" />
+    <Content Include="Content\Images\auth_bg_2.jpg" />
+    <Content Include="Content\Images\auth_bg.jpg" />
     <Content Include="Content\Images\no-notify.png" />
     <Content Include="Content\Images\no_image.jpg" />
+    <Content Include="Content\Images\pixels_bg_2.jpg" />
+    <Content Include="Content\Images\pixels_bg.jpg" />
     <Content Include="Content\Images\tmdb_logo.png" />
     <Content Include="Content\Images\user-image-2.jpg" />
     <Content Include="Content\Styles.css" />
@@ -875,6 +888,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201812162144275_RelateMovieTableToNotifications.resx">
       <DependentUpon>201812162144275_RelateMovieTableToNotifications.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812181329531_ChangeDateReadPropertyInNotificationsTable.resx">
+      <DependentUpon>201812181329531_ChangeDateReadPropertyInNotificationsTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812181824225_ChangeHasBeenReadInNotificationsTable.resx">
+      <DependentUpon>201812181824225_ChangeHasBeenReadInNotificationsTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

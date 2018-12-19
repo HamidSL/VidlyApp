@@ -1,0 +1,54 @@
+﻿#register-form-section {
+    background-image: url("Images/pixels_bg_2.jpg");
+    background-attachment: fixed;
+    background-size: cover;
+    background-repeat: no-repeat;
+    min-height: 700px;
+}
+
+#register-form-section .dark-overlay-registration {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    min-height: inherit;
+    background: rgba(0, 0, 0, 0.6);
+}
+
+#register-form-section .register-form-section-inner {
+    padding-top: 120px;
+}
+
+#register-form-section .card {
+    border: solid #B44D09 2px;
+}
+
+
+#login-form-section {
+    background: url("Images/pixels_bg.jpg");
+    background-attachment: fixed;
+    background-size: cover;
+    background-repeat: no-repeat;
+    min-height: 700px;
+}
+
+#login-form-section .dark-overlay-login {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    min-height: 700px;
+    background: rgba(0, 0, 0, 0.6);
+}
+
+#login-form-section .login-form-section-inner {
+    padding-top: 120px;
+}
+
+#login-form-section .card {
+    border: solid #B44D09 2px;
+}
+
+.inner-spacer-form{
+    padding-top: 120px;
+}

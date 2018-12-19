@@ -17,7 +17,7 @@
                                 {
                                     foreach (var message in Model)
                                     {
-                                        var hasBeenRead = message.HasBeenRead ? "" : "bg-light";
+                                        var hasBeenRead = message.HasBeenRead.Value ? "" : "bg-light";
 
                                         <li class="list-group-item border-0 @hasBeenRead">
                                             <div class="d-flex">

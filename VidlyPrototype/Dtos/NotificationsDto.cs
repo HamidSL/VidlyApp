@@ -19,6 +19,10 @@ namespace VidlyPrototype.Dtos
 
         public DateTime DateReceived { get; set; }
 
+        public DateTime? DateRead { get; set; }
+
+        public bool? HasBeenRead { get; set; }
+
 
     }
 }

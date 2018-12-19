@@ -25,7 +25,7 @@ namespace VidlyPrototype.Controllers
         // GET: UserRentals
         public ActionResult Index()
         {
-            var notifications = _context.Notifications.Include(n => n.User).ToList();
+            var notifications = _context.Notifications.Include(n => n.User).ToList().OrderByDescending(n => n.DateReceived);
 
 
             return View(notifications);
