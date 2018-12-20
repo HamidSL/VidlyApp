@@ -353,6 +353,10 @@
     <Compile Include="Migrations\201812181824225_ChangeHasBeenReadInNotificationsTable.Designer.cs">
       <DependentUpon>201812181824225_ChangeHasBeenReadInNotificationsTable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201812201059258_RePopulateRentalsTable.cs" />
+    <Compile Include="Migrations\201812201059258_RePopulateRentalsTable.Designer.cs">
+      <DependentUpon>201812201059258_RePopulateRentalsTable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AgeRestrictionCustomValidation.cs" />
@@ -561,6 +565,7 @@
     <Content Include="Content\Images\no_image.jpg" />
     <Content Include="Content\Images\pixels_bg_2.jpg" />
     <Content Include="Content\Images\pixels_bg.jpg" />
+    <Content Include="Content\Images\poster.jpg" />
     <Content Include="Content\Images\tmdb_logo.png" />
     <Content Include="Content\Images\user-image-2.jpg" />
     <Content Include="Content\Styles.css" />
@@ -894,6 +899,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201812181824225_ChangeHasBeenReadInNotificationsTable.resx">
       <DependentUpon>201812181824225_ChangeHasBeenReadInNotificationsTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812201059258_RePopulateRentalsTable.resx">
+      <DependentUpon>201812201059258_RePopulateRentalsTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
