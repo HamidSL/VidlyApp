@@ -8,13 +8,16 @@
 <div id="movies-form-section">
     <div class="movies-form-inner header-inner-spaced container">
         <div class="row">
-            <div class="col-6 offset-3 p-2">
+            <div class="col-md-6 offset-md-3 p-2">
                 <h3 class="display-4 py-2 mb-3 border-bottom text-center">@formTitle</h3>
                 @using (Html.BeginForm("Save", "Movies"))
                 {
-                    <div class="form-group">
+                    <div class="form-group movie-title-input">
                         @Html.LabelFor(m => m.Movies.Name)
-                        @Html.TextBoxFor(m => m.Movies.Name, new { @class = "form-control", autocomplete="off" })
+                        @Html.TextBoxFor(m => m.Movies.Name, new { @class = "form-control", autocomplete = "off", id="movie_input" })
+                        <div class="suggestions">
+                            
+                        </div>
                         @Html.ValidationMessageFor(m => m.Movies.Name, "", new { @class="text-danger small"})
                     </div>
                     <div class="form-group">
@@ -32,6 +35,7 @@
                         @Html.TextBoxFor(m => m.Movies.NoInStock, new { @class = "form-control", autocomplete = "off" })
                         @Html.ValidationMessageFor(m => m.Movies.NoInStock, "", new { @class = "text-danger small" })
                     </div>
+                    @Html.HiddenFor(m => m.Movies.TMdbId, new { value = ""})
                     @Html.HiddenFor(m => m.Movies.Id)
                     @Html.AntiForgeryToken()
                     <button class="btn btn-primary btn-block">Save</button>
@@ -41,4 +45,138 @@
         </div>
     </div>
 </div>
+@section scripts
+{
+    <script>
+        $(document).ready(function () {
 
+            //boolean value to check if filled
+            let isFilled = false;
+            //create data to be displayed
+            const data = [
+                {
+                    id: 1, name: "Margai"
+                },
+                {
+                    id: 2, name: "Keith"
+                },
+                {
+                    id: 3, name: "Rumana"
+                },
+                {
+                    id: 4, name: "Fatma"
+                },
+                {
+                    id: 5, name: "Salma"
+                }
+                //"Margai", "Keith", "Abdul", "Ali", "Sadam", "Masoud", "Sally", "Salma", "Yusuf", "Hawa", "Rina", "Faiza", "Hudah", "Mavita",
+                //"Halima", "Fatma", "Hadya", "Omar", "Adnan", "Alhaj", "Rumana"
+            ];
+            //sort data in ascending order
+            data.sort();
+
+            //variable
+            const apiData = {
+                'title': [],
+                'releaseDate': [],
+                'id': []
+            };
+
+
+            const initDialog = () => {
+                clearDialog();
+
+                for (var i = 0; i < data.length; i++) {
+                    $(".suggestions").append("<div class='dropdown-content' data-user-id='" + data[i].id + "'>" + data[i].name + "</div>");
+                }
+            }
+
+            const clearDialog = () => {
+                $(".suggestions").empty();
+            }
+
+            //$("#movie_input").on('click', () => {
+ 
+            //    if (!isFilled) {
+            //        $(".suggestions").addClass('show');
+            //    }
+            //});
+
+            $('body').on('click', '.suggestions > div',function() {
+                var button = $(this);
+
+
+                $("#movie_input").val(button.text()).focus();
+                $("#Movies_TMdbId").val(button.attr('data-movie-id'));
+                
+                isFilled = true;
+
+            });
+
+            const match = (str) => {
+
+                const limit = 20;
+
+                if (str !== "") {
+
+                    str = str.toLowerCase();
+                    clearDialog();
+
+                    //get data from api
+                    $.ajax({
+                        url: "https://api.themoviedb.org/3/search/movie?api_key=7538a1ba766c36605ab0e8e10bab23da&query=".concat(str),
+                        method: "GET",
+                        dataType: "json",
+                        success: function (data) {
+
+                            //reset api data to empty array
+                            apiData.title = [];
+                            apiData.releaseDate = [];
+                            apiData.id = [];
+
+                            data.results.forEach((value, key) => {
+                                apiData.title.push(value['title']);
+                                apiData.releaseDate.push(value['release_date'].substring(0, value['release_date'].indexOf("-")));
+                                apiData.id.push(value['id']);
+
+                                
+
+                            });
+
+                            for (var i = 0; i < apiData.title.length; i++) {
+                                if (apiData.title[i].toLowerCase().startsWith(str)) {
+                                    $(".suggestions").append("<div class='dropdown-content' data-movie-id='" + apiData.id[i] + "'>" + apiData.title[i] + "(" + apiData.releaseDate[i] + ")</div>")
+                                }
+                            }
+                            
+                        },
+                        error: function (x) {
+                            console.log(x.status);
+                        }
+                    });
+
+                    
+                }
+                
+            }
+
+            $("#movie_input").on('input', function () {
+
+                    $(".suggestions").addClass('show');
+                    isFilled = false;
+                    match($(this).val());
+                
+            });
+
+            $("body").click(function (e) {
+                if (!$(e.target).is("#movie_input")) {
+                    $(".suggestions").removeClass('show');
+                }
+            });
+
+            initDialog();
+        });
+    </script>    
+
+
+}

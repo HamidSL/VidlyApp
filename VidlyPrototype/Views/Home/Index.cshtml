@@ -1,6 +1,8 @@
 ﻿@model IEnumerable<VidlyPrototype.Models.Movie>
 @{
     ViewBag.Title = "Home";
+    var imageBase = "https://image.tmdb.org/t/p/original";
+    string fullImage = null;
 }
 
 @* Daily Tech News Feeds Acquired using API From NewsApi Site *@
@@ -118,8 +120,20 @@
                 <div class="card-deck p-2 mb-1 text-light text-center">
                     @foreach (var movie in Model)
                     {
+                        {
+                            
+                            if (!movie.PosterImage.IsEmpty())
+                            {
+                                fullImage = imageBase + movie.PosterImage;
+                            }
+                            else
+                            {
+                                fullImage = "Content/Images/no_image.jpg";
+                            }
+                        }
+
                         <div class="card card-movie-1">
-                            <img src="~/Content/Images/no_image.jpg" alt="@movie.Name-poster" class="rounded img-fluid">
+                            <img src="@fullImage" alt="@movie.Name-poster" class="rounded img-fluid">
                             <div class="dark-overlay rounded-top"></div>
                             <div class="card-img-overlay">
                                 <small class="font-weight-bold text-capitalize">

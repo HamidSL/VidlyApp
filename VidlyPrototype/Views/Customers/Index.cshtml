@@ -74,7 +74,7 @@
                     {
                         data: "id",
                         render: function(data){
-                            return "<button class='btn btn-outline-danger js-delete' data-customer-id=" + data + " title='Delete Customer'><i class='fas fa-trash'></i></button>";
+                            return "<button class='btn btn-outline-danger js-delete mr-2' data-customer-id=" + data + " title='Delete Customer'><i class='fas fa-trash'></i></button><a href='/Customers/Show/"+data+"' class='btn btn-outline-success' title='View Customer Profile'><i class='fas fa-user-tie'></i></a>";
                         }
                     }
                     

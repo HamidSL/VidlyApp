@@ -353,9 +353,9 @@
     <Compile Include="Migrations\201812181824225_ChangeHasBeenReadInNotificationsTable.Designer.cs">
       <DependentUpon>201812181824225_ChangeHasBeenReadInNotificationsTable.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201812201059258_RePopulateRentalsTable.cs" />
-    <Compile Include="Migrations\201812201059258_RePopulateRentalsTable.Designer.cs">
-      <DependentUpon>201812201059258_RePopulateRentalsTable.cs</DependentUpon>
+    <Compile Include="Migrations\201812220649361_AddPosterAndTMDBIdToMoviesTable.cs" />
+    <Compile Include="Migrations\201812220649361_AddPosterAndTMDBIdToMoviesTable.Designer.cs">
+      <DependentUpon>201812220649361_AddPosterAndTMDBIdToMoviesTable.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -372,6 +372,11 @@
     <Compile Include="Models\RoleName.cs" />
     <Compile Include="Models\UserRentals.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Resources\Languages.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Languages.en</DependentUpon>
+    </Compile>
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\CustomerViewModel.cs" />
     <Compile Include="ViewModels\DashboardDataViewModel.cs" />
@@ -699,6 +704,10 @@
     <Content Include="Content\DataTables\css\common.scss" />
     <Content Include="Content\toastr.scss" />
     <Content Include="Content\toastr.less" />
+    <Content Include="Resources\Languages.en">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Languages.Designer.cs</LastGenOutput>
+    </Content>
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\fontawesome\all.js" />
     <Content Include="Scripts\fontawesome\all.min.js" />
@@ -900,8 +909,8 @@
     <EmbeddedResource Include="Migrations\201812181824225_ChangeHasBeenReadInNotificationsTable.resx">
       <DependentUpon>201812181824225_ChangeHasBeenReadInNotificationsTable.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201812201059258_RePopulateRentalsTable.resx">
-      <DependentUpon>201812201059258_RePopulateRentalsTable.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201812220649361_AddPosterAndTMDBIdToMoviesTable.resx">
+      <DependentUpon>201812220649361_AddPosterAndTMDBIdToMoviesTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

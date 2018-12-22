@@ -24,6 +24,13 @@ namespace VidlyPrototype.Dtos
 
         public int MovieGenresId { get; set; }
 
+        //TMdb data from api
+        public int? TMdbId { get; set; }
+
+        public string PosterImage { get; set; }
+
+        public string Summary { get; set; }
+
         public MovieDto()
         {
             DateAdded = DateTime.Now;

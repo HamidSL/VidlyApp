@@ -5,7 +5,7 @@
 }
 
 <div id="movie-header-section">
-    <div class="container movie-header-inner header-inner-spaced">
+    <div class="container movie-header-inner header-inner-spaced mb-4">
         <div class="row">
             <div class="col">
                 <h3 class="display-4 border-bottom py-2 mb-3">Movies</h3>
@@ -73,7 +73,7 @@
                     {
                         data: "id",
                         render: function(data){
-                            return "<button class='btn btn-outline-danger js-movie-delete' data-movie-id=" + data + " title='Delete Movie'><i class='fas fa-trash'></i></button>";
+                            return "<button class='btn btn-outline-danger js-movie-delete mr-2' data-movie-id=" + data + " title='Delete Movie'><i class='fas fa-trash'></i></button><a href='/Movies/Show/" + data +"' class='btn btn-outline-success' title='View Movie Data'><i class='fas fa-film'></i></a>";
                         }
                     }
 

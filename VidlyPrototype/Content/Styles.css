@@ -1,5 +1,5 @@
 ﻿.header-inner-spaced{
-    padding-top: 100px;
+    padding-top: 80px;
 }
 
 .input-validation-error{
@@ -212,4 +212,33 @@ body {
 
 .inner-spacer {
     padding-top: 50px;
+}
+
+.suggestions {
+    min-height: 40px;
+    max-height: 250px;
+    width: 97%;
+    border: 1px solid #ced4da;
+    border-top: none;
+    overflow-y: scroll;
+    position: absolute;
+    background: #fff;
+    display:none;
+
+}
+
+.show{
+    display: block;
+}
+
+.suggestions div {
+    cursor: pointer;
+    display: block;
+    height: 40px;
+    padding: 10px;
+    transition: all 0.2s;
+}
+
+.suggestions div:hover {
+    background: #DCDCDC;
 }

@@ -31,6 +31,12 @@ namespace VidlyPrototype.Models
 
         public MovieGenres MovieGenres { get; set; }
 
+        //TMdb data from api
+        public int? TMdbId { get; set; }
+
+        public string PosterImage { get; set; }
+
+        public string Summary { get; set; }
         //default values 
         public Movie()
         {
