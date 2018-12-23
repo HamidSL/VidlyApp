@@ -1,4 +1,5 @@
-﻿<nav class="navbar navbar-expand-sm navbar-dark bg-dark py-2">
+﻿@using VidlyPrototype.Models
+<nav class="navbar navbar-expand-sm navbar-dark bg-dark py-2">
     <div class="container">
         <a href="@Url.Action("Index", "Home")" class="navbar-brand">
             <i class="far fa-play-circle"></i> RentAMovie
@@ -13,15 +14,36 @@
         <div class="collapse navbar-collapse" id="spNavbar">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    @Html.ActionLink(Resources.Lang.Customers, "Index", "Customers", new { area = "" }, new { @class = "nav-link" })
+                    @Html.ActionLink(Resources.Controller_Home.customers, "Index", "Customers", new { area = "" }, new { @class = "nav-link" })
 
                 </li>
                 <li class="nav-item">
-                    @Html.ActionLink(Resources.Lang.Movies, "Index", "Movies", new { area = "" }, new { @class = "nav-link" })
+                    @Html.ActionLink(Resources.Controller_Home.movies, "Index", "Movies", new { area = "" }, new { @class = "nav-link" })
                 </li>
-                <li class="nav-item">
-                    @Html.ActionLink(Resources.Lang.Rentals, "Create", "Rentals", new { area = "" }, new { @class = "nav-link" })
-                </li>
+                @if (User.Identity.IsAuthenticated && User.IsInRole(RoleName.IsAdministrator))
+                {
+                    <li class="nav-item dropdown">
+                        <a href="@Url.Action("RentalsManager", "Administrator")" class="nav-link dropdown-toggle" data-toggle="dropdown">
+                            @Resources.Controller_Home.rentals <i class="fas fa-angle-down"></i>
+                        </a>
+                        @*@Html.ActionLink(@Resources.Controller_Home.rentals, "Create", "Rentals", new { area = "" }, new { @class = "nav-link dropdown-toggle" })*@
+                    
+                        <ul class="dropdown-menu">
+                            <li class="dropdown-item">
+                                <a href="@Url.Action("RentalsManager", "Administrator")">
+                                    <i class="fas fa-tv"></i> @Resources.Controller_Home.view_rentals
+                                </a>
+                                @*@Html.ActionLink(Resources.Controller_Home.view_rentals, "RentalsManager", "Administrator", new { area = ""}, new { })*@
+                            </li>
+                            <li class="dropdown-item">
+                                <a href="@Url.Action("Create", "Rentals")">
+                                    <i class="fas fa-plus-circle"></i> @Resources.Controller_Home.create_rentals
+                                </a>
+                                @*@Html.ActionLink(Resources.Controller_Home.create_rentals, "Create", "Rentals", new { area = "" }, new { })*@
+                            </li>
+                        </ul>
+                    </li>
+                }       
             </ul>
             @Html.Partial("_LoginPartial")
         </div>

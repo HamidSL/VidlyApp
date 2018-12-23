@@ -10,8 +10,7 @@
     <div class="row">
         <div class="col-md-2 d-none d-lg-block text-center">
             <span class="p-2 news-label text-dark font-weight-bold d-block">
-                <i class="fas fa-stream"></i> Tech
-                Feeds
+                <i class="fas fa-stream"></i> @Resources.Controller_Home.tech_feeds
             </span>
         </div>
         <div class="col-md-10 d-block">
@@ -81,7 +80,7 @@
     <div class="trending-daily-inner">
         <div class="row">
             <div class="col">
-                <h4 class="display-5 border-bottom p-2 my-3">Trending Today</h4>
+                <h4 class="display-5 border-bottom p-2 my-3 text-capitalize">@Resources.Controller_Home.trending_today</h4>
             </div>
         </div>
         <div class="row ">
@@ -95,7 +94,7 @@
         <div class="row">
             <div class="col">
                 <div class="p-2 mb-2">
-                    <span class="small text-muted border-right border-2 mr-2 p-2">Courtesy of TMdb</span>
+                    <span class="small text-muted border-right border-2 mr-2 p-2">@Resources.Controller_Home.courtesy_tmdb</span>
                     <span>
                         <a href="https://www.themoviedb.org/" target="_blank">
                             <img src="~/Content/Images/tmdb_logo.png" alt="TMdb-Logo" height="30">
@@ -108,11 +107,11 @@
 </section>
 
 @* New Release Section - Latest Uploaded Movies in Application Database By Admin *@
-<section id="new-releases-section" class="bg-light px-5">
+<section id="new-releases-section" class="bg-light px-5 mb-5">
     <div class="new-releases-inner">
         <div class="row">
             <div class="col">
-                <h4 class="display-5 border-bottom p-2 my-3">Latest Publications</h4>
+                <h4 class="display-5 border-bottom p-2 my-3 text-capitalize">@Resources.Controller_Home.latest_publications</h4>
             </div>
         </div>
         <div class="row">
@@ -126,29 +125,34 @@
                             {
                                 fullImage = imageBase + movie.PosterImage;
                             }
-                            else
-                            {
-                                fullImage = "Content/Images/no_image.jpg";
-                            }
+                           
                         }
 
-                        <div class="card card-movie-1">
+                    <div class="card card-movie-1">
+                        @if (movie.PosterImage.IsEmpty())
+                        {
+                            <img src="~/Content/Images/no_image.jpg" alt="@movie.Name-poster" class="rounded img-fluid">
+                        }
+                        else
+                        {
                             <img src="@fullImage" alt="@movie.Name-poster" class="rounded img-fluid">
-                            <div class="dark-overlay rounded-top"></div>
-                            <div class="card-img-overlay">
-                                <small class="font-weight-bold text-capitalize">
-                                    @Html.ActionLink(movie.Name, "Show", "Movies", new { id = movie.Id }, new { })
-                                </small>
-                                @*<div id="local-movies">
-                                    <a href="#" data-target="#movie-details-modal" data-toggle="modal" data-movie-id="@movie.TMdbId">
-                                        <i class='fas fa-play-circle mr-1'></i>
-                                    </a>
-                                    <a href="#" data-target="#movie-details-modal" data-toggle="modal" data-movie-id="@movie.TMdbId">
-                                        <i class='fas fa-info-circle'></i>
-                                    </a>
-                                </div>*@
-                            </div>
+                        }
+
+                        <div class="dark-overlay rounded-top"></div>
+                        <div class="card-img-overlay">
+                            <small class="font-weight-bold text-capitalize">
+                                @Html.ActionLink(movie.Name, "Show", "Movies", new { id = movie.Id }, new { })
+                            </small>
+                            @*<div id="local-movies">
+                <a href="#" data-target="#movie-details-modal" data-toggle="modal" data-movie-id="@movie.TMdbId">
+                    <i class='fas fa-play-circle mr-1'></i>
+                </a>
+                <a href="#" data-target="#movie-details-modal" data-toggle="modal" data-movie-id="@movie.TMdbId">
+                    <i class='fas fa-info-circle'></i>
+                </a>
+            </div>*@
                         </div>
+                    </div>
                     }
                 </div>
             </div>
@@ -157,9 +161,9 @@
             <div class="col">
                 <div class="p-2 mb-2">
                     <span class="small text-muted border-right border-2 mr-2 p-2">
-                        Courtesy of RAMdb
+                        @Resources.Controller_Home.courtesy_ramdb
                     </span>
-                    @Html.ActionLink("View More >>", "Index", "Movies", null, new { @class="small text-primary text-right"})
+                    @Html.ActionLink(Resources.Controller_Home.view_more + " >>", "Index", "Movies", null, new { @class="small text-primary text-right text-capitalize"})
                     @*<a href="#" class="small text-primary text-right">View More >></a>*@
                 </div>
             </div>

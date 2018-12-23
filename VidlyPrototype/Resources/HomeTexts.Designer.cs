@@ -22,14 +22,14 @@ namespace Resources {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class Lang_tr {
+    public class HomeTexts {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal Lang_tr() {
+        internal HomeTexts() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace Resources {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("VidlyPrototype.Resources.Lang-tr", typeof(Lang_tr).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("VidlyPrototype.Resources.HomeTexts", typeof(HomeTexts).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,65 +61,38 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Müşteriler.
+        ///   Looks up a localized string similar to About.
         /// </summary>
-        public static string Customers {
+        public static string About {
             get {
-                return ResourceManager.GetString("Customers", resourceCulture);
+                return ResourceManager.GetString("About", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Merhaba.
+        ///   Looks up a localized string similar to Contact.
         /// </summary>
-        public static string Hello {
+        public static string Contact {
             get {
-                return ResourceManager.GetString("Hello", resourceCulture);
+                return ResourceManager.GetString("Contact", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Giriş Yap.
+        ///   Looks up a localized string similar to Home.
         /// </summary>
-        public static string Login {
+        public static string Home {
             get {
-                return ResourceManager.GetString("Login", resourceCulture);
+                return ResourceManager.GetString("Home", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Çıkış Yap.
+        ///   Looks up a localized string similar to Language.
         /// </summary>
-        public static string Logoff {
+        public static string Language {
             get {
-                return ResourceManager.GetString("Logoff", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Filmler.
-        /// </summary>
-        public static string Movies {
-            get {
-                return ResourceManager.GetString("Movies", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Abone Ol.
-        /// </summary>
-        public static string Register {
-            get {
-                return ResourceManager.GetString("Register", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Kiralamaları.
-        /// </summary>
-        public static string Rentals {
-            get {
-                return ResourceManager.GetString("Rentals", resourceCulture);
+                return ResourceManager.GetString("Language", resourceCulture);
             }
         }
     }

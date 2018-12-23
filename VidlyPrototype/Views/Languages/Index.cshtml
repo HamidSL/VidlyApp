@@ -1,0 +1,32 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="mt-5">
+    <div class="py-1">
+        <div class="row">
+            <div class="col-md-5">
+                <div class="px-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <ul class="list-group">
+                                <li class="list-group-item">
+                                    @Html.ActionLink("English", "Change", "Languages", new { LanguageAbbreviation = "en" }, null)
+                                </li>
+                                <li class="list-group-item">
+                                    @Html.ActionLink("Turkish", "Change", "Languages", new { LanguageAbbreviation = "tr" }, null)
+                                </li>
+                                <li class="list-group-item">
+                                    @DateTime.Now.ToString()
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+

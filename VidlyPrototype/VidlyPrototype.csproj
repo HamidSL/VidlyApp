@@ -373,8 +373,28 @@
     <Compile Include="Models\RoleName.cs" />
     <Compile Include="Models\UserRentals.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Resources\Lang-tr.Designer.cs">
-      <DependentUpon>Lang-tr.resx</DependentUpon>
+    <Compile Include="Resources\Controller.Home.tr.Designer.cs">
+      <DependentUpon>Controller.Home.tr.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Resources\Controller.Home.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Controller.Home.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\HomeTexts.tr.Designer.cs">
+      <DependentUpon>HomeTexts.tr.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Resources\HomeTexts.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>HomeTexts.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Lang.tr.Designer.cs">
+      <DependentUpon>Lang.tr.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
@@ -1211,6 +1231,18 @@
     <Content Include="Content\DataTables\css\common.scss" />
     <Content Include="Content\toastr.scss" />
     <Content Include="Content\toastr.less" />
+    <EmbeddedResource Include="Resources\Controller.Home.tr.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Controller.Home.tr.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+      <CustomToolNamespace>Resources</CustomToolNamespace>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Controller.Home.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Controller.Home.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+      <CustomToolNamespace>Resources</CustomToolNamespace>
+    </EmbeddedResource>
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\fontawesome\all.js" />
     <Content Include="Scripts\fontawesome\all.min.js" />
@@ -1310,10 +1342,10 @@
     <Content Include="Views\Administrator\Dashboard.cshtml" />
     <Content Include="Views\Administrator\Rentals.cshtml" />
     <Content Include="Views\Shared\_Header.cshtml" />
+    <Content Include="Views\Languages\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Languages\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -1417,9 +1449,19 @@
     <EmbeddedResource Include="Migrations\201812220649361_AddPosterAndTMDBIdToMoviesTable.resx">
       <DependentUpon>201812220649361_AddPosterAndTMDBIdToMoviesTable.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Resources\Lang-tr.resx">
+    <EmbeddedResource Include="Resources\HomeTexts.tr.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>Lang-tr.Designer.cs</LastGenOutput>
+      <LastGenOutput>HomeTexts.tr.Designer.cs</LastGenOutput>
+      <CustomToolNamespace>Resources</CustomToolNamespace>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\HomeTexts.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>HomeTexts.Designer.cs</LastGenOutput>
+      <CustomToolNamespace>Resources</CustomToolNamespace>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Lang.tr.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Lang.tr.Designer.cs</LastGenOutput>
       <CustomToolNamespace>Resources</CustomToolNamespace>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\Lang.resx">

@@ -117,22 +117,46 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Customers" xml:space="preserve">
-    <value>Customers</value>
+  <data name="courtesy_ramdb" xml:space="preserve">
+    <value>RAMdb izniyle</value>
   </data>
-  <data name="Home" xml:space="preserve">
-    <value>Home</value>
+  <data name="courtesy_tmdb" xml:space="preserve">
+    <value>TMdb izniyle</value>
+  </data>
+  <data name="create_rentals" xml:space="preserve">
+    <value>Kira Oluştur</value>
+  </data>
+  <data name="customers" xml:space="preserve">
+    <value>Müşteriler</value>
+  </data>
+  <data name="english" xml:space="preserve">
+    <value>İngilizce</value>
+  </data>
+  <data name="hello" xml:space="preserve">
+    <value>Merhaba</value>
   </data>
   <data name="latest_publications" xml:space="preserve">
-    <value>Latest Publicatıons</value>
+    <value>En Son Yayınlananlar</value>
   </data>
-  <data name="Movies" xml:space="preserve">
-    <value>Movies</value>
+  <data name="movies" xml:space="preserve">
+    <value>Filmler</value>
   </data>
-  <data name="Rentals" xml:space="preserve">
-    <value>Rentals</value>
+  <data name="rentals" xml:space="preserve">
+    <value>Kiralananları</value>
+  </data>
+  <data name="tech_feeds" xml:space="preserve">
+    <value>Teknoloji Haberleri</value>
   </data>
   <data name="trending_today" xml:space="preserve">
-    <value>Trending Today</value>
+    <value>En Çok Konuşulanlar</value>
+  </data>
+  <data name="turkish" xml:space="preserve">
+    <value>Türkçe</value>
+  </data>
+  <data name="view_more" xml:space="preserve">
+    <value>daha fazla göster</value>
+  </data>
+  <data name="view_rentals" xml:space="preserve">
+    <value>Kiralamayı Görüntüle</value>
   </data>
 </root>

@@ -10,6 +10,11 @@ namespace VidlyPrototype.Controllers
 {
     public class LanguagesController : Controller
     {
+        public ActionResult Index()
+        {
+            return View();
+        }
+
         public ActionResult Change(string LanguageAbbreviation)
         {
             if(LanguageAbbreviation != null)

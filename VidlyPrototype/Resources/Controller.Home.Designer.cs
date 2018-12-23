@@ -22,14 +22,14 @@ namespace Resources {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class Lang {
+    public class Controller_Home {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal Lang() {
+        internal Controller_Home() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace Resources {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("VidlyPrototype.Resources.Lang", typeof(Lang).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("VidlyPrototype.Resources.Controller.Home", typeof(Controller_Home).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,25 +61,61 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Courtesy of RAMdb.
+        /// </summary>
+        public static string courtesy_ramdb {
+            get {
+                return ResourceManager.GetString("courtesy_ramdb", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Courtesy of TMdb.
+        /// </summary>
+        public static string courtesy_tmdb {
+            get {
+                return ResourceManager.GetString("courtesy_tmdb", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Create Rentals.
+        /// </summary>
+        public static string create_rentals {
+            get {
+                return ResourceManager.GetString("create_rentals", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Customers.
         /// </summary>
-        public static string Customers {
+        public static string customers {
             get {
-                return ResourceManager.GetString("Customers", resourceCulture);
+                return ResourceManager.GetString("customers", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Home.
+        ///   Looks up a localized string similar to English.
         /// </summary>
-        public static string Home {
+        public static string english {
             get {
-                return ResourceManager.GetString("Home", resourceCulture);
+                return ResourceManager.GetString("english", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Latest Publicatıons.
+        ///   Looks up a localized string similar to Hello.
+        /// </summary>
+        public static string hello {
+            get {
+                return ResourceManager.GetString("hello", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to latest publications.
         /// </summary>
         public static string latest_publications {
             get {
@@ -90,27 +126,63 @@ namespace Resources {
         /// <summary>
         ///   Looks up a localized string similar to Movies.
         /// </summary>
-        public static string Movies {
+        public static string movies {
             get {
-                return ResourceManager.GetString("Movies", resourceCulture);
+                return ResourceManager.GetString("movies", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Rentals.
         /// </summary>
-        public static string Rentals {
+        public static string rentals {
             get {
-                return ResourceManager.GetString("Rentals", resourceCulture);
+                return ResourceManager.GetString("rentals", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Trending Today.
+        ///   Looks up a localized string similar to Tech Feeds.
+        /// </summary>
+        public static string tech_feeds {
+            get {
+                return ResourceManager.GetString("tech_feeds", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to trending today.
         /// </summary>
         public static string trending_today {
             get {
                 return ResourceManager.GetString("trending_today", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Turkish.
+        /// </summary>
+        public static string turkish {
+            get {
+                return ResourceManager.GetString("turkish", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to View More.
+        /// </summary>
+        public static string view_more {
+            get {
+                return ResourceManager.GetString("view_more", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to View Rentals.
+        /// </summary>
+        public static string view_rentals {
+            get {
+                return ResourceManager.GetString("view_rentals", resourceCulture);
             }
         }
     }

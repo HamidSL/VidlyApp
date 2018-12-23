@@ -2,12 +2,12 @@
         <div class="container">
             <div class="row">
                 <div class="col">
-                    <div class="clearfix pl-2">
+                    <div class="clearfix">
                         <span class="float-right small py-1">
-                            <a href="@Url.Action("Change", "Languages", new { LanguageAbbreviation = "tr" })" title="Turkish">
+                            <a href="@Url.Action("Change", "Languages", new { LanguageAbbreviation = "tr" })" title="@Resources.Controller_Home.turkish">
                                 <img src="~/Content/png/tr.png" /> TR
                             </a>
-                            <a href="@Url.Action("Change", "Languages", new { LanguageAbbreviation = "en" })" title="English">
+                            <a href="@Url.Action("Change", "Languages", new { LanguageAbbreviation = "en" })" title="@Resources.Controller_Home.english">
                                 <img src="~/Content/png/us.png" class="ml-1" /> EN
                             </a>
                         </span>

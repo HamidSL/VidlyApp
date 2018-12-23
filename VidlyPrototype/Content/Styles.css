@@ -242,3 +242,7 @@ body {
 .suggestions div:hover {
     background: #DCDCDC;
 }
+
+.navbar .dropdown .dropdown-menu a {
+    text-decoration: none;
+}
