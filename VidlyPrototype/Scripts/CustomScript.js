@@ -3,6 +3,7 @@
     $("#movie-details-modal, .close").on('click', function () {
         $(".movie-trailer-wrapper iframe").attr('src', '');
     });
+
     var movieColl = {
         'base': "https://image.tmdb.org/t/p/original",
         'id': ""

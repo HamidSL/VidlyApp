@@ -75,25 +75,6 @@ namespace VidlyPrototype.Controllers
             return View("MoviesForm", viewModel);
         }
 
-        async static Task GetMovieData(int id)
-        {
-            var baseAddress = new Uri("api.themoviedb.org/3/movie/");
-
-            using (HttpClient client = new HttpClient { BaseAddress = baseAddress})
-            {
-
-                using (HttpResponseMessage response = await client.GetAsync(id + "?api_key=7538a1ba766c36605ab0e8e10bab23da"))
-                {
-
-                    using(HttpContent content = response.Content)
-                    {
-                        string MovieData = await content.ReadAsStringAsync();
-
-                        
-                    }
-                }
-            }
-        }
 
         //POST: Save movie data
         [HttpPost]
@@ -166,12 +147,73 @@ namespace VidlyPrototype.Controllers
             }  
             else
             {
-                var movieInDb = _context.Movies.Single(m => m.Id == movie.Movies.Id);
+                var movieInDb = _context.Movies.SingleOrDefault(m => m.Id == movie.Movies.Id);
+                if (movieInDb == null)
+                    return HttpNotFound("Movie Not Found");
 
-                movieInDb.Name = movie.Movies.Name;
-                movieInDb.ReleaseDate = movie.Movies.ReleaseDate;
-                movieInDb.MovieGenresId = movie.Movies.MovieGenresId;
-                movieInDb.NoInStock = movie.Movies.NoInStock;
+                if(movie.Movies.TMdbId == null)
+                {
+                    movieInDb.Name = movie.Movies.Name;
+                    movieInDb.ReleaseDate = movie.Movies.ReleaseDate;
+                    movieInDb.MovieGenresId = movie.Movies.MovieGenresId;
+                    movieInDb.NoInStock = movie.Movies.NoInStock;
+                    movieInDb.NumberAvailable = movie.Movies.NoInStock;
+                }
+                else
+                {
+
+                    using (HttpClient client = new HttpClient { BaseAddress = baseAddress })
+                    {
+
+                        using (HttpResponseMessage response = client.GetAsync(movie.Movies.TMdbId.Value + "?api_key=7538a1ba766c36605ab0e8e10bab23da").Result)
+                        {
+                            if (response.IsSuccessStatusCode)
+                            {
+                                using (HttpContent content = response.Content)
+                                {
+
+                                    JavaScriptSerializer javascriptSerializer = new JavaScriptSerializer();
+                                    var movieData = content.ReadAsStringAsync().Result;
+
+                                    var moreData = JsonConvert.DeserializeObject<dynamic>(movieData);
+
+                                    //return Content(moreData.backdrop_path.ToString());
+
+                                    if(movieInDb.TMdbId != movie.Movies.TMdbId.Value)
+                                    {
+                                        movieInDb.TMdbId = movie.Movies.TMdbId.Value;
+                                        movieInDb.PosterImage = moreData.poster_path.ToString();
+                                        movieInDb.Summary = moreData.overview.ToString();
+                                        movieInDb.Name = moreData.title.ToString();
+                                        movieInDb.ReleaseDate = Convert.ToDateTime(moreData.release_date.ToString());  
+                                    }
+                                    else
+                                    {
+                                        movieInDb.Name = movie.Movies.Name;
+                                        movieInDb.ReleaseDate = movie.Movies.ReleaseDate;
+                                    }
+
+                                    movieInDb.MovieGenresId = movie.Movies.MovieGenresId;
+                                    movieInDb.NoInStock = movie.Movies.NoInStock;
+                                    movieInDb.NumberAvailable = movie.Movies.NoInStock;
+                                    //if (moreData.release_date.ToString() != "")
+                                    //{
+                                    //    movie.Movies.ReleaseDate = (DateTime)moreData.release_date.ToString();
+                                    //}
+
+                                   
+
+                                }
+
+                            }
+                            else
+                            {
+                                ViewBag.Result = "Error";
+                            }
+                        }
+                    }
+                }
+                
 
             }
             _context.SaveChanges();
@@ -206,6 +248,26 @@ namespace VidlyPrototype.Controllers
         //        return HttpNotFound();
 
         //    return View(movie);
+        //}
+
+        //async static Task GetMovieData(int id)
+        //{
+        //    var baseAddress = new Uri("api.themoviedb.org/3/movie/");
+
+        //    using (HttpClient client = new HttpClient { BaseAddress = baseAddress})
+        //    {
+
+        //        using (HttpResponseMessage response = await client.GetAsync(id + "?api_key=7538a1ba766c36605ab0e8e10bab23da"))
+        //        {
+
+        //            using(HttpContent content = response.Content)
+        //            {
+        //                string MovieData = await content.ReadAsStringAsync();
+
+
+        //            }
+        //        }
+        //    }
         //}
     }
 }

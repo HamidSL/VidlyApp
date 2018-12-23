@@ -3,9 +3,20 @@
 @{
     ViewBag.Title = Model.Movies.Name == null?"Show":Model.Movies.Name.ToUpper();
     Layout = "~/Views/Shared/_Layout.cshtml";
+    var imageBase = "https://image.tmdb.org/t/p/original";
+    string fullImage = null;
+
+    if (Model.Movies.PosterImage.IsEmpty())
+    {
+        fullImage = "Content/Images/no_image.jpg";
+    }
+    else
+    {
+        fullImage = imageBase + Model.Movies.PosterImage;
+    }
 }
 <section id="show-movie-section">
-    <div class="show-movie-inner container">
+    <div class="show-movie-inner container mb-4">
         <div class="row">
             <div class="col">
                 <div class="card">
@@ -16,12 +27,12 @@
                                 <div class="movie-details border-right border-2 p-2 pt-3 text-center">
                                     <div class="d-flex flex-column">
                                         <div class="align-content-center border-bottom p-3 mb-3">
-                                            <img src="~/Content/Images/no_image.jpg" alt="@Model.Movies.Name-poster" class="img-fluid rounded" height="150" width="150">
+                                            <img src="@fullImage" alt="@Model.Movies.Name-poster" class="img-fluid rounded" height="150" width="150">
                                         </div>
 
                                         <h4 class="display-5 text-capitalize">@Model.Movies.Name</h4>
-                                        <ul class="list-unstyled text-capitalize small text-center">
-                                            <li>
+                                        <ul class="list-unstyled small text-center">
+                                            <li class="text-capitalize">
                                                 <i class="fas fa-theater-masks" title="Movie Genre"></i> <b>Genre:</b> @Model.Movies.MovieGenres.Name
                                             </li>
                                             <li>
@@ -35,11 +46,20 @@
                                                 <i class="far fa-calendar-alt" title="Release Date"></i> @Model.Movies.ReleaseDate.ToString("yyyy-MM-dd")
                                                 <i class="far fa-calendar-plus pl-1" title="Date Added"></i> @Model.Movies.DateAdded.ToString("yyyy-MM-dd")
                                             </li>
-                                            
+                                            @if (!Model.Movies.Summary.IsEmpty())
+                                            {
+                                                <li class="border-top border-bottom py-2 my-2">
+                                                    <p>
+                                                        @Model.Movies.Summary
+                                                    </p>
+                                                </li>
+                                            }
+                                              
                                         </ul>
                                         @if(User.Identity.IsAuthenticated && User.IsInRole(RoleName.IsAdministrator))
                                         {
-                                            <a href="#" class="btn btn-lg btn-outline-primary">
+                                            @*@Html.ActionLink("Edit Movie","Edit", "Movies", new { id = Model.Movies.Id}, new { @class="btn btn-lg btn-outline-primary"})*@
+                                            <a href="@Url.Action("Edit", "Movies", new { id = Model.Movies.Id })" class="btn btn-lg btn-outline-primary">
                                                 <i class="fas fa-edit"></i> Edit Movie
                                             </a>
                                         }

@@ -36,7 +36,7 @@
                                         </ul>
                                         @if(User.Identity.IsAuthenticated && User.IsInRole(RoleName.IsAdministrator))
                                         {
-                                            <a href="#" class="btn btn-lg btn-outline-primary">
+                                            <a href="@Url.Action("Edit", "Customers", new { id = Model.Customers.Id })" class="btn btn-lg btn-outline-primary">
                                                 <i class="fas fa-user-edit"></i> Edit Customer
                                             </a>
                                         }

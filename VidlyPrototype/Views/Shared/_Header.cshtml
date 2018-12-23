@@ -1,0 +1,35 @@
+﻿<header id="languages-section">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <div class="clearfix">
+                        <span class="float-right small py-1">
+                            <a href="@Url.Action("Change", "Languages", new { LanguageAbbreviation = "tr" })" title="Turkish">
+                                <img src="~/Content/png/tr.png" /> TR
+                            </a>
+                            <a href="@Url.Action("Change", "Languages", new { LanguageAbbreviation = "en" })" title="English">
+                                <img src="~/Content/png/us.png" class="ml-1" /> EN
+                            </a>
+                        </span>
+                        <span class="float-left text-info py-1">
+                            <a href="https://facebook.com" title="Facebook" target="_blank">
+                                <i class="fab fa-facebook-f pr-1"></i>
+                            </a>
+                            <a href="https://twitter.com" title="Twitter" target="_blank">
+                                <i class="fab fa-twitter pr-1"></i>
+                            </a>
+                            <a href="https://pinterest.com" title="Pinterest" target="_blank">
+                                <i class="fab fa-pinterest-p pr-1"></i>
+                            </a>
+                            <a href="https://instagram.com" title="Instagram" target="_blank">
+                                <i class="fab fa-instagram pr-1"></i>
+                            </a> 
+                            <span class="px-2 border-left">
+                                @DateTime.Now.ToString()
+                            </span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>

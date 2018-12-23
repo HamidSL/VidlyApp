@@ -117,7 +117,7 @@
         </div>
         <div class="row">
             <div class="col">
-                <div class="card-deck p-2 mb-1 text-light text-center">
+                <div class="card-deck p-2 mb-1 text-light text-center" >
                     @foreach (var movie in Model)
                     {
                         {
@@ -137,8 +137,16 @@
                             <div class="dark-overlay rounded-top"></div>
                             <div class="card-img-overlay">
                                 <small class="font-weight-bold text-capitalize">
-                                    @Html.ActionLink(movie.Name, "Show", "Movies", new { id = movie.Id}, new { })
+                                    @Html.ActionLink(movie.Name, "Show", "Movies", new { id = movie.Id }, new { })
                                 </small>
+                                @*<div id="local-movies">
+                                    <a href="#" data-target="#movie-details-modal" data-toggle="modal" data-movie-id="@movie.TMdbId">
+                                        <i class='fas fa-play-circle mr-1'></i>
+                                    </a>
+                                    <a href="#" data-target="#movie-details-modal" data-toggle="modal" data-movie-id="@movie.TMdbId">
+                                        <i class='fas fa-info-circle'></i>
+                                    </a>
+                                </div>*@
                             </div>
                         </div>
                     }

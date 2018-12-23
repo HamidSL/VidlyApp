@@ -9,6 +9,19 @@
     <div class="movies-form-inner header-inner-spaced container">
         <div class="row">
             <div class="col-md-6 offset-md-3 p-2">
+                <div class="alert alert-info py-2 mb-2 small">
+                    <div class="d-flex">
+                        <div class="align-content-start pr-2">
+                            <i class="fas fa-info-circle fa-2x"></i>
+                        </div>
+                        <div class="align-content-end">
+                            When a movie is chosen from the provided suggestion dropdown list, the movie id is stored
+                            and is used to acquire more data on the movie online. If you would like to input the movie details on your own, please make sure to input data
+                            without choosing from the dropdown list or if you choose from the list, please make sure to delete the entire movie name before inputing your own movie name.
+                        </div>
+                    </div>
+                     
+                </div>
                 <h3 class="display-4 py-2 mb-3 border-bottom text-center">@formTitle</h3>
                 @using (Html.BeginForm("Save", "Movies"))
                 {
@@ -79,7 +92,8 @@
             const apiData = {
                 'title': [],
                 'releaseDate': [],
-                'id': []
+                'id': [],
+                'fullDate':[]
             };
 
 
@@ -108,7 +122,7 @@
 
                 $("#movie_input").val(button.text()).focus();
                 $("#Movies_TMdbId").val(button.attr('data-movie-id'));
-                
+
                 isFilled = true;
 
             });
@@ -136,26 +150,30 @@
 
                             data.results.forEach((value, key) => {
                                 apiData.title.push(value['title']);
+                                apiData.fullDate.push(value['release_date']);
                                 apiData.releaseDate.push(value['release_date'].substring(0, value['release_date'].indexOf("-")));
                                 apiData.id.push(value['id']);
 
-                                
+
 
                             });
 
                             for (var i = 0; i < apiData.title.length; i++) {
                                 if (apiData.title[i].toLowerCase().startsWith(str)) {
-                                    $(".suggestions").append("<div class='dropdown-content' data-movie-id='" + apiData.id[i] + "'>" + apiData.title[i] + "(" + apiData.releaseDate[i] + ")</div>")
+                                    $(".suggestions").append("<div class='dropdown-content' data-release-date='" + apiData.fullDate[i] + "'data-movie-id='" + apiData.id[i] + "'>" + apiData.title[i] + "(" + apiData.releaseDate[i] + ")</div>")
                                 }
                             }
-                            
+
                         },
                         error: function (x) {
                             console.log(x.status);
                         }
                     });
 
-                    
+
+                } else {
+
+                    $("#Movies_TMdbId").val("");
                 }
                 
             }

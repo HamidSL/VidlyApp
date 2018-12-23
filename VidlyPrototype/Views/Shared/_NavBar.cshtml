@@ -13,14 +13,14 @@
         <div class="collapse navbar-collapse" id="spNavbar">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    @Html.ActionLink("Customers", "Index", "Customers", new { area = "" }, new { @class = "nav-link" })
+                    @Html.ActionLink(Resources.Lang.Customers, "Index", "Customers", new { area = "" }, new { @class = "nav-link" })
 
                 </li>
                 <li class="nav-item">
-                    @Html.ActionLink("Movies", "Index", "Movies", new { area = "" }, new { @class = "nav-link" })
+                    @Html.ActionLink(Resources.Lang.Movies, "Index", "Movies", new { area = "" }, new { @class = "nav-link" })
                 </li>
                 <li class="nav-item">
-                    @Html.ActionLink("Rentals", "Create", "Rentals", new { area = "" }, new { @class = "nav-link" })
+                    @Html.ActionLink(Resources.Lang.Rentals, "Create", "Rentals", new { area = "" }, new { @class = "nav-link" })
                 </li>
             </ul>
             @Html.Partial("_LoginPartial")

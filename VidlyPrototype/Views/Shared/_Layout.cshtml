@@ -6,10 +6,17 @@
     <title>RentAMovie | @ViewBag.Title</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+    <style>
+        #languages-section a{
+            text-decoration:none;
+        }
+    </style>
 
 </head>
 <body>
-    
+    @* Header here *@
+    @Html.Partial("_Header")
+
     @* Navbar here *@
     @Html.Partial("_NavBar")
 

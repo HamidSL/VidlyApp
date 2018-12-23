@@ -36,7 +36,8 @@ namespace VidlyPrototype
                       "~/Content/fontawesome/all.css",
                       "~/Content/typeahead.css",
                       "~/Content/toastr.css",
-                      "~/Content/authstyles.css"));
+                      "~/Content/authstyles.css",
+                      "~/Content/sprite/famfamfam-flags.css"));
         }
     }
 }

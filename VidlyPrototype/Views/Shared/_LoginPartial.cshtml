@@ -13,7 +13,7 @@
             <li class="nav-item dropdown">
                 <a href="#" class="nav-link text-capitalize dropdown-toggle btn btn-outline-link" data-toggle="dropdown" title="Manage" id="user-dropdown">
                     <img src="~/Content/Images/user-image-2.jpg" alt="@username.Substring(0, username.IndexOf(@"@"))-profile-image" class="rounded-circle" width="30" height="30">
-                    Hello, @username.Substring(0, username.IndexOf(@"@")) <span class="fas fa-angle-down"></span>
+                    @Resources.Lang.Hello, @username.Substring(0, username.IndexOf(@"@")) <span class="fas fa-angle-down"></span>
                 </a>
                 <ul class="dropdown-menu dropdown-menu-right">
                     <li class="dropdown-item p-0 m-0">
@@ -63,7 +63,10 @@
                                                 <a href="#" class="mark-as-read">Mark All As Read</a>
                                             </div>
                                         </div>
-                                        <div class="user-informer-card" style="a{ text-decoration: none;}">
+                                        <style>
+                                            .user-informer-card a { text-decoration: none;}
+                                        </style>
+                                        <div class="user-informer-card">
                                             
                                         </div>
                                     </div>
@@ -79,7 +82,7 @@
             </li>
             <li class="nav-item">
                 <a href="javascript:document.getElementById('logoutForm').submit()" class="nav-link">
-                    <i class="fas fa-sign-out-alt"></i> Log Out
+                    <i class="fas fa-sign-out-alt"></i> @Resources.Lang.Logoff
                 </a>
             </li>
         </ul>
@@ -90,12 +93,12 @@ else
     <ul class="navbar-nav ml-auto">
         <li class="nav-item">
             <a href="@Url.Action("Login", "Account")" class="nav-link" id="loginLink">
-                <i class="fas fa-sign-in-alt"></i> Log In
+                <i class="fas fa-sign-in-alt"></i> @Resources.Lang.Login
             </a>
         </li>
         <li class="nav-item">
             <a href="@Url.Action("Register", "Account")" class="nav-link" id="registerLink">
-                <i class="fas fa-user-plus"></i> Register
+                <i class="fas fa-user-plus"></i> @Resources.Lang.Register
             </a>
         </li>
         @*<li class="nav-item">@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink", @class = "nav-link" })</li>*@
