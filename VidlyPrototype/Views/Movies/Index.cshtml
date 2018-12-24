@@ -1,6 +1,6 @@
 ﻿@model IEnumerable<VidlyPrototype.Models.Movie>
 @{
-    ViewBag.Title = "Movies";
+    ViewBag.Title = Resources.Controller_Movies.page_title;
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -8,9 +8,9 @@
     <div class="container movie-header-inner header-inner-spaced mb-4">
         <div class="row">
             <div class="col">
-                <h3 class="display-4 border-bottom py-2 mb-3">Movies</h3>
+                <h3 class="display-4 border-bottom py-2 mb-3">@Resources.Controller_Movies.page_title</h3>
                 <a href="/Movies/Create" class="btn btn-primary py-2 m-3">
-                    <i class="fas fa-plus-circle"></i> Add Movie
+                    <i class="fas fa-plus-circle"></i> @Resources.Controller_Movies.add_movie
                 </a>
                 @*@if (Model.Any())
                 {*@
@@ -18,8 +18,8 @@
                         <table class="table table-bordered" id="movies">
                             <thead class="thead-light">
                                 <tr>
-                                    <th>Name</th>
-                                    <th>Genre</th>
+                                    <th>@Resources.Controller_Movies.name</th>
+                                    <th>@Resources.Controller_Movies.genre</th>
                                     <th></th>
                                 </tr>
                             </thead>
@@ -73,7 +73,7 @@
                     {
                         data: "id",
                         render: function(data){
-                            return "<button class='btn btn-outline-danger js-movie-delete mr-2' data-movie-id=" + data + " title='Delete Movie'><i class='fas fa-trash'></i></button><a href='/Movies/Show/" + data +"' class='btn btn-outline-success' title='View Movie Data'><i class='fas fa-film'></i></a>";
+                            return "<button class='btn btn-outline-danger js-movie-delete mr-2' data-movie-id=" + data + " title='@Resources.Controller_Movies.delete_movie'><i class='fas fa-trash'></i></button><a href='/Movies/Show/" + data +"' class='btn btn-outline-success' title='@Resources.Controller_Movies.view_movie'><i class='fas fa-film'></i></a>";
                         }
                     }
 

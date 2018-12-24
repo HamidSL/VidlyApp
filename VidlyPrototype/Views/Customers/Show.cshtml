@@ -1,7 +1,7 @@
 ﻿@model VidlyPrototype.ViewModels.UserRentalsShowViewModel
 @using VidlyPrototype.Models
 @{
-    ViewBag.Title = Model.Customers.Name == null?"Show":Model.Customers.Name.ToUpper();
+    ViewBag.Title = Model.Customers.Name == null?Resources.Controller_Customers.show:Model.Customers.Name.ToUpper();
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -22,22 +22,22 @@
                                         <h4 class="display-5 text-capitalize">@Model.Customers.Name</h4>
                                         <ul class="list-unstyled text-capitalize small text-center">
                                             <li>
-                                                <i class="fas fa-user" title="Membership Type"></i> <b>Membership Type: </b>@Model.Customers.MembershipTypes.Name
+                                                <i class="fas fa-user" title="Membership Type"></i> <b>@Resources.Controllers_Customers_Form.membership_type: </b>@Model.Customers.MembershipTypes.Name
                                             </li>
                                             <li>
                                                 @{ 
                                                     var isSubscribedToNewsletter = Model.Customers.IsSubscribedToNewsletter ? "far fa-thumbs-up text-primary" : "far fa-thumbs-down text-danger";
                                                 }
-                                                <i class="fas fa-newspaper" title="Newsletter Subscription"></i> <b>Newsletter Subscription: </b><i class="@isSubscribedToNewsletter"></i>
+                                                <i class="fas fa-newspaper" title="@Resources.Controllers_Customers_Form.newsletter_sub"></i> <b>@Resources.Controllers_Customers_Form.newsletter_sub: </b><i class="@isSubscribedToNewsletter"></i>
                                             </li>
                                             <li>
-                                                <i class="far fa-calendar-alt" title="Date of Birth"></i> <b>Date of Birth: </b> @Model.Customers.DateOfBirth.Value.ToString("d MMM yyyy")                               
+                                                <i class="far fa-calendar-alt" title="@Resources.Controllers_Customers_Form.date_of_birth"></i> <b>@Resources.Controllers_Customers_Form.date_of_birth: </b> @Model.Customers.DateOfBirth.Value.ToString("d MMM yyyy")                               
                                             </li>
                                         </ul>
                                         @if(User.Identity.IsAuthenticated && User.IsInRole(RoleName.IsAdministrator))
                                         {
                                             <a href="@Url.Action("Edit", "Customers", new { id = Model.Customers.Id })" class="btn btn-lg btn-outline-primary">
-                                                <i class="fas fa-user-edit"></i> Edit Customer
+                                                <i class="fas fa-user-edit"></i> @Resources.Controllers_Customers_Form.update_customer
                                             </a>
                                         }
                                        
@@ -55,7 +55,7 @@
                             </div>
                             <div class="col-lg-8">
                                 <div class="movie-relations p-2 pt-3 text-center">
-                                    <h4 class="display-4 border-bottom my-3">Movies Rented...</h4>
+                                    <h4 class="display-4 border-bottom my-3">@Resources.Controllers_Customers_Form.movies_rented...</h4>
                                     @if (User.Identity.IsAuthenticated && User.IsInRole(RoleName.IsAdministrator))
                                     {
                                         if (Model.Rentals.Count > 0)
@@ -64,9 +64,9 @@
                                                 <table class="table table-bordered table-hover">
                                                     <thead class="thead-light">
                                                         <tr>
-                                                            <th>Name</th>
-                                                            <th>Date Rented</th>
-                                                            <th>Return Date (ERD)</th>
+                                                            <th>@Resources.Controllers_Customers_Form.name</th>
+                                                            <th>@Resources.Controllers_Customers_Form.date_rented</th>
+                                                            <th>@Resources.Controllers_Customers_Form.return_date</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
@@ -91,14 +91,14 @@
                                         else
                                         {
                                             <p class="h3 text-warning">
-                                                <i class="fas fa-exclamation-circle"></i> No Rentals Data Available
+                                                <i class="fas fa-exclamation-circle"></i> @Resources.Controllers_Customers_Form.no_rentals
                                             </p>
                                         }
                                     }
                                     else
                                     {
                                         <p class="text-danger h3">
-                                            <i class="fas fa-user-lock"></i> Data Viewership Restricted
+                                            <i class="fas fa-user-lock"></i> @Resources.Controllers_Customers_Form.viewership_restriction
                                         </p>
                                     }
                                 </div>

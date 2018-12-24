@@ -1,6 +1,6 @@
 ﻿@model VidlyPrototype.Models.RegisterViewModel
 @{
-    ViewBag.Title = "Create Account";
+    ViewBag.Title = Resources.Controller_Account.create_account;
 }
 
 <section id="register-form-section">
@@ -14,7 +14,7 @@
                             {
                                 @Html.AntiForgeryToken()
                                 <fieldset class="form-group">
-                                    <legend class="border-bottom mb-1 display-4 text-center">Sign Up</legend>
+                                    <legend class="border-bottom mb-1 display-4 text-center">@Resources.Controller_Account.sign_up</legend>
                                     @Html.ValidationSummary(false, "", new { @class = "text-danger small" })
                                     <div class="input-group mb-2">
                                         <div class="input-group-prepend">
@@ -30,7 +30,7 @@
                                                 <i class="fas fa-lock"></i>
                                             </span>
                                         </div>
-                                        @Html.PasswordFor(m => m.Password, new { @class = "form-control", placeholder = "Password" })
+                                        @Html.PasswordFor(m => m.Password, new { @class = "form-control", placeholder = Resources.Controller_Account.password })
 
                                     </div>
                                     <div class="input-group mb-2">
@@ -39,15 +39,15 @@
                                                 <i class="fas fa-lock"></i>
                                             </span>
                                         </div>
-                                        @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control", placeholder = "Confirm Password" })
+                                        @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control", placeholder = Resources.Controller_Account.confirm_password })
                                     </div>
                                     <button class="btn btn-outline-primary btn-block" type="submit">
-                                        Sign Up
+                                        @Resources.Controller_Account.sign_up
                                     </button>
                                 </fieldset>
                             }
                                 <div class="small">
-                                    Already A Member? @Html.ActionLink("Access Account", "Login", "Account", null, new { })
+                                    @Resources.Controller_Account.already_member @Html.ActionLink(Resources.Controller_Account.access_account, "Login", "Account", null, new { })
                                 </div>
                         </div>
                     </div>

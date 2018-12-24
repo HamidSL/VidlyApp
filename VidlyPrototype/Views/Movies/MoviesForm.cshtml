@@ -1,6 +1,6 @@
 ﻿@model VidlyPrototype.ViewModels.MovieViewModel
 @{
-    var formTitle = Model.Movies.Id == 0 ? "Create Movie" : "Update Movie";
+    var formTitle = Model.Movies.Id == 0 ? Resources.Controller_Movies.create_movie : Resources.Controller_Movies.update_movie;
     ViewBag.Title = formTitle;
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -15,9 +15,7 @@
                             <i class="fas fa-info-circle fa-2x"></i>
                         </div>
                         <div class="align-content-end">
-                            When a movie is chosen from the provided suggestion dropdown list, the movie id is stored
-                            and is used to acquire more data on the movie online. If you would like to input the movie details on your own, please make sure to input data
-                            without choosing from the dropdown list or if you choose from the list, please make sure to delete the entire movie name before inputing your own movie name.
+                            @Resources.Controller_Movies.form_info_message
                         </div>
                     </div>
                      
@@ -25,33 +23,54 @@
                 <h3 class="display-4 py-2 mb-3 border-bottom text-center">@formTitle</h3>
                 @using (Html.BeginForm("Save", "Movies"))
                 {
-                    <div class="form-group movie-title-input">
-                        @Html.LabelFor(m => m.Movies.Name)
-                        @Html.TextBoxFor(m => m.Movies.Name, new { @class = "form-control", autocomplete = "off", id="movie_input" })
+                    @Html.ValidationSummary(false, "", new { @class = "text-danger small"})
+                    <div class="input-group movie-title-input mb-3">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text">
+                                <span class="far fa-file-video"></span>
+                            </div>
+                        </div>
+                        @*@Html.LabelFor(m => m.Movies.Name)*@
+                        @Html.TextBoxFor(m => m.Movies.Name, new { @class = "form-control", autocomplete = "off", id="movie_input", placeholder=Resources.Controller_Movies.name })
                         <div class="suggestions">
                             
                         </div>
-                        @Html.ValidationMessageFor(m => m.Movies.Name, "", new { @class="text-danger small"})
+                        @*@Html.ValidationMessageFor(m => m.Movies.Name, "", new { @class="text-danger small"})*@
                     </div>
-                    <div class="form-group">
-                        @Html.LabelFor(m => m.Movies.ReleaseDate)
-                        @Html.TextBoxFor(m => m.Movies.ReleaseDate, "{0:dd MMM yyyy}", new { @class = "form-control", autocomplete = "off" })
-                        @Html.ValidationMessageFor(m => m.Movies.ReleaseDate, "", new { @class = "text-danger small" })
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text">
+                                <span class="far fa-calendar-alt"></span>
+                            </div>
+                        </div>
+                        @*@Html.LabelFor(m => m.Movies.ReleaseDate)*@
+                        @Html.TextBoxFor(m => m.Movies.ReleaseDate, "{0:dd MMM yyyy}", new { @class = "form-control", autocomplete = "off", placeholder = Resources.Controller_Movies.release_date })
+                        @*@Html.ValidationMessageFor(m => m.Movies.ReleaseDate, "", new { @class = "text-danger small" })*@
                     </div>
-                    <div class="form-group">
-                        @Html.LabelFor(m => m.Movies.MovieGenresId)
-                        @Html.DropDownListFor(m => m.Movies.MovieGenresId, new SelectList(Model.MovieGenres, "Id", "Name"), "Select Movie Genre", new { @class = "form-control text-capitalize" })
-                        @Html.ValidationMessageFor(m => m.Movies.MovieGenresId, "", new { @class = "text-danger small" })
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text">
+                                <span class="fas fa-theater-masks"></span>
+                            </div>
+                        </div>
+                        @*@Html.LabelFor(m => m.Movies.MovieGenresId)*@
+                        @Html.DropDownListFor(m => m.Movies.MovieGenresId, new SelectList(Model.MovieGenres, "Id", "Name"), Resources.Controller_Movies.movie_genres_sl, new { @class = "form-control text-capitalize" })
+                        @*@Html.ValidationMessageFor(m => m.Movies.MovieGenresId, "", new { @class = "text-danger small" })*@
                     </div>
-                    <div class="form-group">
-                        @Html.LabelFor(m => m.Movies.NoInStock)
-                        @Html.TextBoxFor(m => m.Movies.NoInStock, new { @class = "form-control", autocomplete = "off" })
-                        @Html.ValidationMessageFor(m => m.Movies.NoInStock, "", new { @class = "text-danger small" })
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text">
+                                <span class="fas fa-cart-arrow-down"></span>
+                            </div>
+                        </div>
+                        @*@Html.LabelFor(m => m.Movies.NoInStock)*@
+                        @Html.TextBoxFor(m => m.Movies.NoInStock, new { @class = "form-control", autocomplete = "off", placeholder = Resources.Controller_Movies.number_in_stock })
+                        @*@Html.ValidationMessageFor(m => m.Movies.NoInStock, "", new { @class = "text-danger small" })*@
                     </div>
                     @Html.HiddenFor(m => m.Movies.TMdbId, new { value = ""})
                     @Html.HiddenFor(m => m.Movies.Id)
                     @Html.AntiForgeryToken()
-                    <button class="btn btn-primary btn-block">Save</button>
+                    <button class="btn btn-primary btn-block">@Resources.Controller_Movies.save</button>
                 }
 
             </div>

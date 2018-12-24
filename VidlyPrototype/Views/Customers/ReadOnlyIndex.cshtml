@@ -1,6 +1,6 @@
 ﻿@model IEnumerable<VidlyPrototype.Models.Customer>
 @{
-    ViewBag.Title = "Customers";
+    ViewBag.Title = Resources.Controller_Customers.customer_title;
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -8,15 +8,15 @@
     <div class="customer-header-inner header-inner-spaced container">
         <div class="row">
             <div class="col">
-                <h3 class="display-4 border-bottom py-2 mb-3">Customers</h3>
+                <h3 class="display-4 border-bottom py-2 mb-3">@Resources.Controller_Customers.customer_title</h3>
                 @*@if (Model.Any())
                 {*@
                     <div class="table-responsive">
                         <table class="table table-bordered" id="customers">
                             <thead class="thead-light">
                                 <tr>
-                                    <th>Name</th>
-                                    <th>Membership Type</th>
+                                    <th>@Resources.Controller_Customers.name</th>
+                                    <th>@Resources.Controller_Customers.membership_type</th>
                                 </tr>
                             </thead>
                             <tbody>

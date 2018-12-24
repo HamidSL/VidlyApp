@@ -358,6 +358,10 @@
     <Compile Include="Migrations\201812220649361_AddPosterAndTMDBIdToMoviesTable.Designer.cs">
       <DependentUpon>201812220649361_AddPosterAndTMDBIdToMoviesTable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201812241614043_MovieGenreFieldRequired.cs" />
+    <Compile Include="Migrations\201812241614043_MovieGenreFieldRequired.Designer.cs">
+      <DependentUpon>201812241614043_MovieGenreFieldRequired.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AgeRestrictionCustomValidation.cs" />
@@ -373,6 +377,36 @@
     <Compile Include="Models\RoleName.cs" />
     <Compile Include="Models\UserRentals.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Resources\Controller.Account.tr.Designer.cs">
+      <DependentUpon>Controller.Account.tr.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Resources\Controller.Account.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Controller.Account.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Controller.Accout.Validation.tr.Designer.cs">
+      <DependentUpon>Controller.Accout.Validation.tr.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Resources\Controller.Accout.Validation.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Controller.Accout.Validation.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Controller.Customers.tr.Designer.cs">
+      <DependentUpon>Controller.Customers.tr.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Resources\Controller.Customers.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Controller.Customers.resx</DependentUpon>
+    </Compile>
     <Compile Include="Resources\Controller.Home.tr.Designer.cs">
       <DependentUpon>Controller.Home.tr.resx</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -382,6 +416,36 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Controller.Home.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Controller.Movies.Form.tr.Designer.cs">
+      <DependentUpon>Controller.Movies.Form.tr.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Resources\Controller.Movies.Form.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Controller.Movies.Form.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Controller.Movies.tr.Designer.cs">
+      <DependentUpon>Controller.Movies.tr.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Resources\Controller.Movies.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Controller.Movies.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Controllers.Customers.Form.tr.Designer.cs">
+      <DependentUpon>Controllers.Customers.Form.tr.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Resources\Controllers.Customers.Form.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Controllers.Customers.Form.resx</DependentUpon>
     </Compile>
     <Compile Include="Resources\HomeTexts.tr.Designer.cs">
       <DependentUpon>HomeTexts.tr.resx</DependentUpon>
@@ -402,6 +466,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Lang.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\rs1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rs1.resx</DependentUpon>
     </Compile>
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\CustomerViewModel.cs" />
@@ -841,6 +910,10 @@
     <Content Include="Content\gif\zw.gif" />
     <Content Include="Content\Images\auth_bg_2.jpg" />
     <Content Include="Content\Images\auth_bg.jpg" />
+    <Content Include="Content\Images\bg-poster-1.jpg" />
+    <Content Include="Content\Images\bg-poster-2.jpg" />
+    <Content Include="Content\Images\bg-poster-3.png" />
+    <Content Include="Content\Images\bg-poster-4.jpg" />
     <Content Include="Content\Images\no-notify.png" />
     <Content Include="Content\Images\no_image.jpg" />
     <Content Include="Content\Images\pixels_bg_2.jpg" />
@@ -1231,6 +1304,33 @@
     <Content Include="Content\DataTables\css\common.scss" />
     <Content Include="Content\toastr.scss" />
     <Content Include="Content\toastr.less" />
+    <EmbeddedResource Include="Migrations\201812241614043_MovieGenreFieldRequired.resx">
+      <DependentUpon>201812241614043_MovieGenreFieldRequired.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Controller.Account.tr.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Controller.Account.tr.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+      <CustomToolNamespace>Resources</CustomToolNamespace>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Controller.Accout.Validation.tr.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Controller.Accout.Validation.tr.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Controller.Accout.Validation.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Controller.Accout.Validation.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Controller.Customers.tr.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Controller.Customers.tr.Designer.cs</LastGenOutput>
+      <CustomToolNamespace>Resources</CustomToolNamespace>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Controller.Customers.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Controller.Customers.Designer.cs</LastGenOutput>
+      <CustomToolNamespace>Resources</CustomToolNamespace>
+    </EmbeddedResource>
     <EmbeddedResource Include="Resources\Controller.Home.tr.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Controller.Home.tr.Designer.cs</LastGenOutput>
@@ -1240,6 +1340,44 @@
     <EmbeddedResource Include="Resources\Controller.Home.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Controller.Home.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+      <CustomToolNamespace>Resources</CustomToolNamespace>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Controller.Movies.Form.tr.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Controller.Movies.Form.tr.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Controller.Movies.Form.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Controller.Movies.Form.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Controller.Movies.tr.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Controller.Movies.tr.Designer.cs</LastGenOutput>
+      <CustomToolNamespace>Resources</CustomToolNamespace>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Controller.Movies.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Controller.Movies.Designer.cs</LastGenOutput>
+      <CustomToolNamespace>Resources</CustomToolNamespace>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Controllers.Customers.Form.tr.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Controllers.Customers.Form.tr.Designer.cs</LastGenOutput>
+      <CustomToolNamespace>Resources</CustomToolNamespace>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Controllers.Customers.Form.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Controllers.Customers.Form.Designer.cs</LastGenOutput>
+      <CustomToolNamespace>Resources</CustomToolNamespace>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\rs1.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>rs1.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Controller.Account.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Controller.Account.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
       <CustomToolNamespace>Resources</CustomToolNamespace>
     </EmbeddedResource>

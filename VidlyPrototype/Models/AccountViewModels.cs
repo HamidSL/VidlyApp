@@ -5,7 +5,7 @@ namespace VidlyPrototype.Models
 {
     public class ExternalLoginConfirmationViewModel
     {
-        [Required]
+        [Required(ErrorMessageResourceType = typeof(Resources.Controller_Accout_Validation), ErrorMessageResourceName = "email_required")]
         [Display(Name = "Email")]
         public string Email { get; set; }
     }
@@ -41,7 +41,7 @@ namespace VidlyPrototype.Models
 
     public class ForgotViewModel
     {
-        [Required]
+        [Required(ErrorMessageResourceType = typeof(Resources.Controller_Accout_Validation), ErrorMessageResourceName = "email_required")]
         [Display(Name = "Email")]
         public string Email { get; set; }
     }
@@ -49,12 +49,12 @@ namespace VidlyPrototype.Models
     public class LoginViewModel
     {
 
-        [Required]
+        [Required(ErrorMessageResourceType = typeof(Resources.Controller_Accout_Validation), ErrorMessageResourceName = "email_required")]
         [Display(Name = "Email")]
         [EmailAddress]
         public string Email { get; set; }
 
-        [Required]
+        [Required(ErrorMessageResourceType = typeof(Resources.Controller_Accout_Validation), ErrorMessageResourceName = "password_required")]
         [DataType(DataType.Password)]
         [Display(Name = "Password")]
         public string Password { get; set; }
@@ -65,39 +65,39 @@ namespace VidlyPrototype.Models
 
     public class RegisterViewModel
     {
-        [Required]
+        [Required(ErrorMessageResourceType = typeof(Resources.Controller_Accout_Validation), ErrorMessageResourceName = "email_required")]
         [EmailAddress]
         [Display(Name = "Email")]
         public string Email { get; set; }
 
-        [Required]
-        [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
+        [Required(ErrorMessageResourceType = typeof(Resources.Controller_Accout_Validation), ErrorMessageResourceName = "password_required")]
+        [StringLength(100, ErrorMessageResourceType = typeof(Resources.Controller_Accout_Validation), ErrorMessageResourceName = "password_length", MinimumLength = 6)]
         [DataType(DataType.Password)]
         [Display(Name = "Password")]
         public string Password { get; set; }
 
         [DataType(DataType.Password)]
         [Display(Name = "Confirm password")]
-        [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+        [Compare("Password", ErrorMessageResourceType = typeof(Resources.Controller_Accout_Validation), ErrorMessageResourceName = "confirm_password")]
         public string ConfirmPassword { get; set; }
     }
 
     public class ResetPasswordViewModel
     {
-        [Required]
+        [Required(ErrorMessageResourceType = typeof(Resources.Controller_Accout_Validation), ErrorMessageResourceName = "email_required")]
         [EmailAddress]
         [Display(Name = "Email")]
         public string Email { get; set; }
 
-        [Required]
-        [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
+        [Required(ErrorMessageResourceType = typeof(Resources.Controller_Accout_Validation), ErrorMessageResourceName = "password_required")]
+        [StringLength(100, ErrorMessageResourceType = typeof(Resources.Controller_Accout_Validation), ErrorMessageResourceName = "password_length", MinimumLength = 6)]
         [DataType(DataType.Password)]
         [Display(Name = "Password")]
         public string Password { get; set; }
 
         [DataType(DataType.Password)]
         [Display(Name = "Confirm password")]
-        [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+        [Compare("Password", ErrorMessageResourceType = typeof(Resources.Controller_Accout_Validation), ErrorMessageResourceName = "confirm_password")]
         public string ConfirmPassword { get; set; }
 
         public string Code { get; set; }
@@ -105,7 +105,7 @@ namespace VidlyPrototype.Models
 
     public class ForgotPasswordViewModel
     {
-        [Required]
+        [Required(ErrorMessageResourceType = typeof(Resources.Controller_Accout_Validation), ErrorMessageResourceName = "email_required")]
         [EmailAddress]
         [Display(Name = "Email")]
         public string Email { get; set; }

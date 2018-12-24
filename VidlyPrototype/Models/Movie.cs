@@ -10,7 +10,7 @@ namespace VidlyPrototype.Models
     {
         public int Id { get; set; }
 
-        [Required]
+        [Required(ErrorMessageResourceType = typeof(Resources.Controller_Movies_Form), ErrorMessageResourceName = "name_required")]
         public string Name { get; set; }
 
         [Display(Name="Release Date")]
@@ -20,13 +20,14 @@ namespace VidlyPrototype.Models
         public DateTime DateAdded { get; set; }
 
         [Display(Name="Number In Stock")]
-        [Range(1, 50, ErrorMessage ="The Number in Stock value must be between 1 and 50")]
+        [Range(1, 50, ErrorMessageResourceType = typeof(Resources.Controller_Movies_Form), ErrorMessageResourceName = "num_in_stock")]
         public byte NoInStock { get; set; }
 
         public byte NumberAvailable { get; set; }
 
         //Movies Table Relationship with MovieGenres
         [Display(Name="Movie Genres")]
+        [Required(ErrorMessageResourceType = typeof(Resources.Controller_Movies_Form), ErrorMessageResourceName = "movie_genre_required")]
         public int MovieGenresId { get; set; }
 
         public MovieGenres MovieGenres { get; set; }

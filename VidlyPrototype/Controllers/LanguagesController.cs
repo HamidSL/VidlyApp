@@ -15,6 +15,7 @@ namespace VidlyPrototype.Controllers
             return View();
         }
 
+        [AllowAnonymous]
         public ActionResult Change(string LanguageAbbreviation)
         {
             if(LanguageAbbreviation != null)

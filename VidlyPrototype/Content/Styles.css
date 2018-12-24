@@ -217,13 +217,13 @@ body {
 .suggestions {
     min-height: 40px;
     max-height: 250px;
-    width: 97%;
+    width: 100%;
     border: 1px solid #ced4da;
     border-top: none;
     overflow-y: scroll;
-    position: absolute;
     background: #fff;
     display:none;
+    position: relative;
 
 }
 
@@ -245,4 +245,13 @@ body {
 
 .navbar .dropdown .dropdown-menu a {
     text-decoration: none;
+}
+
+
+#languages-section{
+    z-index: 1044;
+    height: 100%;
+    width: auto;
+    background: #fff;
+    position: relative;
 }

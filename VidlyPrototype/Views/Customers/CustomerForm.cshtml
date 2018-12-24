@@ -1,6 +1,6 @@
 ﻿@model VidlyPrototype.ViewModels.CustomerViewModel
 @{
-    var formTitle = Model.Customers.Id == 0 ? "Create Customer" : "Update Customer";
+    var formTitle = Model.Customers.Id == 0 ? Resources.Controllers_Customers_Form.create_customer : Resources.Controllers_Customers_Form.update_customer;
     ViewBag.Title = formTitle;
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -11,29 +11,44 @@
                 <h3 class="display-4 border-bottom py-2 mb-4 text-center">@formTitle</h3>
                 @using (Html.BeginForm("Save", "Customers"))
                 {
-                    <div class="form-group">
-                        @Html.LabelFor(m => m.Customers.Name)
-                        @Html.TextBoxFor(m => m.Customers.Name, new { @class = "form-control", autocomplete = "off" })
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text">
+                                <span class="fas fa-user-tag"></span>
+                            </div>
+                        </div>
+                        @*@Html.LabelFor(m => m.Customers.Name)*@
+                        @Html.TextBoxFor(m => m.Customers.Name, new { @class = "form-control", autocomplete = "off", placeholder = Resources.Controllers_Customers_Form.name })
                         @Html.ValidationMessageFor(m => m.Customers.Name, "", new { @class = "text-danger small" })
                     </div>
-                    <div class="form-group">
-                        @Html.LabelFor(m => m.Customers.DateOfBirth)
-                        @Html.TextBoxFor(m => m.Customers.DateOfBirth, "{0:dd MMM yyyy}", new { @class = "form-control", autocomplete = "off" })
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text">
+                                <span class="fas fa-calendar-alt"></span>
+                            </div>
+                        </div>
+                        @*@Html.LabelFor(m => m.Customers.DateOfBirth)*@
+                        @Html.TextBoxFor(m => m.Customers.DateOfBirth, "{0:dd MMM yyyy}", new { @class = "form-control", autocomplete = "off", placeholder=Resources.Controllers_Customers_Form.date_of_birth })
                         @Html.ValidationMessageFor(m => m.Customers.DateOfBirth, "", new { @class = "text-danger small" })
                     </div>
-                    <div class="form-group">
-                        @Html.LabelFor(m => m.Customers.MembershipTypesId)
-                        @Html.DropDownListFor(m => m.Customers.MembershipTypesId, new SelectList(Model.MembershipTypes, "Id", "Name"), "Select Membership Type", new { @class = "form-control", autocomplete = "off" })
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text">
+                                <span class="far fa-id-card"></span>
+                            </div>
+                        </div>
+                        @*@Html.LabelFor(m => m.Customers.MembershipTypesId)*@
+                        @Html.DropDownListFor(m => m.Customers.MembershipTypesId, new SelectList(Model.MembershipTypes, "Id", "Name"), Resources.Controllers_Customers_Form.select_mt, new { @class = "form-control", autocomplete = "off" })
                         @Html.ValidationMessageFor(m => m.Customers.MembershipTypesId, "", new { @class = "text-danger small" })
                     </div>
                     <div class="checkbox">
                         <label for="IsSubscribedToNewsletter">
-                            @Html.CheckBoxFor(m => m.Customers.IsSubscribedToNewsletter) Subscribe To Newsletter?
+                            @Html.CheckBoxFor(m => m.Customers.IsSubscribedToNewsletter) @Resources.Controllers_Customers_Form.newsletter
                         </label>
                     </div>
                     @Html.HiddenFor(m => m.Customers.Id)
                     @Html.AntiForgeryToken()
-                    <button type="submit" class="btn btn-primary btn-block">Save</button>
+                    <button type="submit" class="btn btn-primary btn-block">@Resources.Controllers_Customers_Form.save</button>
                 }
 
             </div>

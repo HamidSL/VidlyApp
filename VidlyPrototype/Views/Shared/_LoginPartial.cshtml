@@ -82,7 +82,7 @@
             </li>
             <li class="nav-item">
                 <a href="javascript:document.getElementById('logoutForm').submit()" class="nav-link">
-                    <i class="fas fa-sign-out-alt"></i> Logoff
+                    <i class="fas fa-sign-out-alt"></i> @Resources.Controller_Account.log_off
                 </a>
             </li>
         </ul>
@@ -93,12 +93,12 @@ else
     <ul class="navbar-nav ml-auto">
         <li class="nav-item">
             <a href="@Url.Action("Login", "Account")" class="nav-link" id="loginLink">
-                <i class="fas fa-sign-in-alt"></i> Login
+                <i class="fas fa-sign-in-alt"></i> @Resources.Controller_Account.login
             </a>
         </li>
         <li class="nav-item">
             <a href="@Url.Action("Register", "Account")" class="nav-link" id="registerLink">
-                <i class="fas fa-user-plus"></i> Register
+                <i class="fas fa-user-plus"></i> @Resources.Controller_Account.register
             </a>
         </li>
         @*<li class="nav-item">@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink", @class = "nav-link" })</li>*@

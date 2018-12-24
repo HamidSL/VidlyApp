@@ -1,6 +1,6 @@
 ﻿@model IEnumerable<VidlyPrototype.Models.Customer>
 @{
-    ViewBag.Title = "Customers";
+    ViewBag.Title = Resources.Controller_Customers.customer_title;
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -8,9 +8,9 @@
     <div class="customer-header-inner header-inner-spaced container mb-5">
         <div class="row">
             <div class="col">
-                <h3 class="display-4 border-bottom py-2 mb-3">Customers</h3>
+                <h3 class="display-4 border-bottom py-2 mb-3">@Resources.Controller_Customers.customer_title</h3>
                 <a href="/Customers/Create" class="btn btn-primary py-2 m-3">
-                    <i class="fas fa-user-plus"></i> Add Customer
+                    <i class="fas fa-user-plus"></i> @Resources.Controller_Customers.add
                 </a>
                 @if (Model.Any())
                 {
@@ -18,8 +18,8 @@
                         <table class="table table-bordered" id="customers">
                             <thead class="thead-light">
                                 <tr>
-                                    <th>Name</th>
-                                    <th>Membership Type</th>
+                                    <th>@Resources.Controller_Customers.name</th>
+                                    <th>@Resources.Controller_Customers.membership_type</th>
                                     <th></th>
                                 </tr>
                             </thead>
@@ -43,7 +43,7 @@
                 }
                 else
                 {
-                    <p class="lead text-center">There are no customers at the moment</p>
+                    <p class="lead text-center">@Resources.Controller_Customers.no_customers</p>
                 }
 
                 
@@ -74,7 +74,7 @@
                     {
                         data: "id",
                         render: function(data){
-                            return "<button class='btn btn-outline-danger js-delete mr-2' data-customer-id=" + data + " title='Delete Customer'><i class='fas fa-trash'></i></button><a href='/Customers/Show/"+data+"' class='btn btn-outline-success' title='View Customer Profile'><i class='fas fa-user-tie'></i></a>";
+                            return "<button class='btn btn-outline-danger js-delete mr-2' data-customer-id=" + data + " title='@Resources.Controller_Customers.delete'><i class='fas fa-trash'></i></button><a href='/Customers/Show/"+data+"' class='btn btn-outline-success' title='@Resources.Controller_Customers.view'><i class='fas fa-user-tie'></i></a>";
                         }
                     }
                     

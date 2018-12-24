@@ -1,0 +1,183 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="added_to_rentals" xml:space="preserve">
+    <value>Kiralama Listenize Film Eklendi</value>
+  </data>
+  <data name="add_movie" xml:space="preserve">
+    <value>Film Ekle</value>
+  </data>
+  <data name="available" xml:space="preserve">
+    <value>Var Olan</value>
+  </data>
+  <data name="create_movie" xml:space="preserve">
+    <value>Film Ekle</value>
+  </data>
+  <data name="date_added" xml:space="preserve">
+    <value>Ekleme Tarihi</value>
+  </data>
+  <data name="delete_movie" xml:space="preserve">
+    <value>Filmi Sil</value>
+  </data>
+  <data name="form_info_message" xml:space="preserve">
+    <value>Sağlanan öneri açılır listesinden bir film seçildiğinde, film kimliği saklanır ve çevrimiçi film hakkında daha fazla veri almak için kullanılır. Film ayrıntılarını kendi başınıza girmek istiyorsanız, lütfen açılır listeden seçim yapmadan veri girdiğinizden emin olun veya listeden seçim yapın, lütfen kendi film adınızı girmeden önce tüm film adını sildiğinizden emin olun.</value>
+  </data>
+  <data name="genre" xml:space="preserve">
+    <value>Türü</value>
+  </data>
+  <data name="movie_genres" xml:space="preserve">
+    <value>Film Türleri</value>
+  </data>
+  <data name="movie_genres_sl" xml:space="preserve">
+    <value>Film Türü Seç</value>
+  </data>
+  <data name="name" xml:space="preserve">
+    <value>Film İsmi</value>
+  </data>
+  <data name="number_in_stock" xml:space="preserve">
+    <value>Stoktaki Sayı</value>
+  </data>
+  <data name="page_title" xml:space="preserve">
+    <value>Filmler</value>
+  </data>
+  <data name="release_date" xml:space="preserve">
+    <value>Yayın Tarihi</value>
+  </data>
+  <data name="rent" xml:space="preserve">
+    <value>Kirala</value>
+  </data>
+  <data name="rented" xml:space="preserve">
+    <value>Kiralanmış</value>
+  </data>
+  <data name="rent_sure" xml:space="preserve">
+    <value>Bu filmi kiralamak istediğinize emin misiniz?</value>
+  </data>
+  <data name="save" xml:space="preserve">
+    <value>Kaydet</value>
+  </data>
+  <data name="show" xml:space="preserve">
+    <value>Göster</value>
+  </data>
+  <data name="update_movie" xml:space="preserve">
+    <value>Filmi Güncelle</value>
+  </data>
+  <data name="view_movie" xml:space="preserve">
+    <value>Film Verilerini Görüntüle</value>
+  </data>
+</root>

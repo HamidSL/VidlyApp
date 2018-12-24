@@ -2,7 +2,7 @@
 @using Microsoft.AspNet.Identity;
 
 @{
-    ViewBag.Title = "Movies";
+    ViewBag.Title = Resources.Controller_Movies.page_title;
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -10,15 +10,15 @@
     <div class="container movie-header-inner header-inner-spaced">
         <div class="row">
             <div class="col">
-                <h3 class="display-4 border-bottom py-2 mb-3">Movies</h3>
+                <h3 class="display-4 border-bottom py-2 mb-3">@Resources.Controller_Movies.page_title</h3>
                 @*@if (Model.Any())
                     {*@
                 <div class="table-responsive">
                     <table class="table table-bordered" id="movies">
                         <thead class="thead-light">
                             <tr>
-                                <th>Name</th>
-                                <th>Genre</th>
+                                <th>@Resources.Controller_Movies.name</th>
+                                <th>@Resources.Controller_Movies.genre</th>
                                 <th></th>
                             </tr>
                         </thead>
@@ -69,7 +69,7 @@
                     {
                         data: "name",
                         render: function (data, type, movies) {
-                            return "<button class='btn btn-link js-movie-rent' data-movie-id='" + movies.id + "'><i class='fas fa-shopping-basket text-success'></i> Rent</button>";
+                            return "<button class='btn btn-link js-movie-rent' data-movie-id='" + movies.id + "'><i class='fas fa-shopping-basket text-success'></i> @Resources.Controller_Movies.rent</button>";
                         }
                     }
 
@@ -82,7 +82,7 @@
                 e.preventDefault();
 
                 var button = $(this);
-                bootbox.confirm("Are you sure you want to rent this movie?", function (result) {
+                bootbox.confirm("@Resources.Controller_Movies.rent_sure", function (result) {
                     if (result) {
                         $.ajax({
                             url: "/api/userRentals/",
@@ -90,7 +90,7 @@
                             data: { "movieId": button.attr("data-movie-id") },
                             success: function () {
                                 table.row(button.addClass('disabled').html("<i class='fa fa-check'></i> Rented"));
-                                toastr.success("Movie Added To Your Rentals List");
+                                toastr.success("@Resources.Controller_Movies.added_to_rentals");
                             },
                             error: function (x, y, j) {
                                 //console.log(x.responseJSON);
@@ -116,7 +116,7 @@
                     success: function (data) {
                         console.log(movieId);
                         if (data != null) {
-                            informer.addClass('disabled').html("<i class='fa fa-check'></i><i>Rented</i>");
+                            informer.addClass('disabled').html("<i class='fa fa-check'></i><i>@Resources.Controller_Movies.rented</i>");
                         }
                     },
                     error: function (x) {
