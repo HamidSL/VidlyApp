@@ -141,6 +141,9 @@
   <data name="movies" xml:space="preserve">
     <value>Filmler</value>
   </data>
+  <data name="page_title" xml:space="preserve">
+    <value>Ana Sayfa</value>
+  </data>
   <data name="rentals" xml:space="preserve">
     <value>Kiralananları</value>
   </data>

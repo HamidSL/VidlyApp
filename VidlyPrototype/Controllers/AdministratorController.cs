@@ -40,12 +40,16 @@ namespace VidlyPrototype.Controllers
             //movies rented
             var moviesRented = _context.Movies.Sum(m => m.NoInStock - m.NumberAvailable);
 
+            //user rentals
+            int userRentals = _context.UserRentals.ToList().Count();
+
             //view model
             var viewModel = new DashboardDataViewModel
             {
                 Customers = customers,
                 Movies = movies,
                 Users = users,
+                TotalRentals = userRentals
             };
 
             return View("Dashboard", viewModel);

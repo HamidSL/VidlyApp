@@ -69,7 +69,9 @@
                                 foreach(var rentedData in Model.Movies)
                                 {
                                     rentedTotals += rentedData.NoInStock - rentedData.NumberAvailable;
+                                    
                                 }
+                                rentedTotals += Model.TotalRentals;
                             }
                             <i class="fas fa-tags"></i> @rentedTotals
                         </h4>
@@ -78,7 +80,7 @@
             </div>
 
         </div>
-        <div class="row mb-3">
+        @*<div class="row mb-3">
             <div class="col-md-6">
                 <h3 class="display-5 border-bottom border-2 py-2 mb-3">Rentals</h3>
                 <canvas id="rentals-chart">
@@ -95,8 +97,8 @@
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="row">
+        </div>*@
+        <div class="row  mb-4">
             <div class="col-md-6">
                 <div class="card">
                     <div class="card-body">
@@ -119,7 +121,9 @@
                                             if (x < y)
                                             {
                                                 <tr>
-                                                    <td class="text-capitalize">@customer.Name</td>
+                                                    <td class="text-capitalize">
+                                                        @Html.ActionLink(customer.Name,"Show", "Customers", new { id = customer.Id}, new { })
+                                                    </td>
                                                     <td>@customer.MembershipTypes.Name</td>
                                                     @{
                                                         var dob = customer.DateOfBirth.HasValue ? customer.DateOfBirth.Value.ToString("d MMM yyyy h:mmtt") : " - ";
@@ -171,7 +175,9 @@
                                             if (x < y)
                                             {
                                                 <tr>
-                                                    <td class="text-capitalize">@movie.Name</td>
+                                                    <td class="text-capitalize">
+                                                        @Html.ActionLink(movie.Name, "Show", "Movies", new { id = movie.Id}, new { })
+                                                    </td>
                                                     <td class="text-capitalize">@movie.MovieGenres.Name</td>
                                                     @*<td>@movie.ReleaseDate.ToString("d MMM yyyy h:mmtt")</td>*@
                                                     @*<td>@movie.DateAdded.ToString("d MMM yyyy h:mmtt")</td>*@

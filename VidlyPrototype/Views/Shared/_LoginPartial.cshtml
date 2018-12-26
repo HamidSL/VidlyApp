@@ -1,5 +1,5 @@
 ﻿@using Microsoft.AspNet.Identity
-
+@using VidlyPrototype.Models
 @{
     var username = User.Identity.GetUserName() != null ? User.Identity.GetUserName() : null;
 }
@@ -26,16 +26,26 @@
                                         </div>
                                         <h4 class="display-5 text-capitalize">@username.Substring(0, username.IndexOf(@"@"))</h4>
                                         <h6 class="small">@username</h6>
-                                        <div class="mb-2">
+                                        <div>
                                             <a href="@Url.Action("Index", "Manage")" class="btn btn-outline-success btn-block">
                                                 <i class="fas fa-user-alt"></i> View Profile
                                             </a>
                                         </div>
+                                        @if (User.Identity.IsAuthenticated && User.IsInRole(RoleName.IsAdministrator))
+                                        {
+                                            <div class="dropdown-divider"></div>
+                                            <div class="mb-2">
+                                                <a href="@Url.Action("Index", "Administrator")" class="btn btn-outline-primary btn-block">
+                                                    <i class="fas fa-tachometer-alt"></i> Dashboard
+                                                </a>
+                                            </div>
+                                        }
+
                                         <!-- <div>
-                                            <a href="#" class="btn btn-outline-danger btn-block">
-                                                <i class="fas fa-sign-out-alt"></i> Log Out
-                                            </a>
-                                        </div> -->
+        <a href="#" class="btn btn-outline-danger btn-block">
+            <i class="fas fa-sign-out-alt"></i> Log Out
+        </a>
+    </div> -->
                                     </div>
                                 </div>
                             </div>
