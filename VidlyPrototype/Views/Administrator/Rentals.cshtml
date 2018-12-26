@@ -1,6 +1,6 @@
 ﻿@model VidlyPrototype.ViewModels.DashboardDataViewModel
 @{
-    ViewBag.Title = "Rentals";
+    ViewBag.Title = Resources.Controller_Rentals.rentals;
     Layout = "~/Views/Shared/_Layout.cshtml";
 
     int nrCustCount, urUserCount = 0;
@@ -19,7 +19,7 @@
                 <div class="card" style="max-height:100%;overflow-y: scroll;">
                     <div class="card-body">
                             @*Accordion To Display Users*@
-                            <h4 class="display-5 py-2 my-3 border-bottom">Users</h4>
+                        <h4 class="display-5 py-2 my-3 border-bottom">@Resources.Controller_Rentals.users</h4>
 
                             @if (urUserCount > 0)
                             {
@@ -28,11 +28,11 @@
                                     <table class="table table-striped table-hover table-bordered" id="users-rentals">
                                         <thead class="thead-light">
                                             <tr>
-                                                <th>Username</th>
-                                                <th>Movie Name</th>
-                                                <th>Date Rented</th>
-                                                <th>Return Date[ERD]</th>
-                                                <th title="Inform User of Movie Subscription Expiry Based on Return Date And Today">Inform of Expiry</th>
+                                                <th>@Resources.Controller_Rentals.username</th>
+                                                <th>@Resources.Controller_Rentals.movie_name</th>
+                                                <th>@Resources.Controller_Rentals.date_rented</th>
+                                                <th>@Resources.Controller_Rentals.return_date</th>
+                                                <th title="@Resources.Controller_Rentals.inform_title">@Resources.Controller_Rentals.inform_of_expiry</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -56,8 +56,8 @@
                                                         @if (expiryCalculation > dateComparer)
                                                         {
                                                             //display buttons
-                                                            <a href="#" class="btn btn-outline-primary inform-rental" title="Send Notification To User That Rental Date is Almost Over" data-movie-id="@rental.Movie.Id" data-user-id="@rental.Users.Id">
-                                                                <i class="fas fa-bullhorn"></i> Inform
+                                                            <a href="#" class="btn btn-outline-primary inform-rental" title="@Resources.Controller_Rentals.inform_button_title" data-movie-id="@rental.Movie.Id" data-user-id="@rental.Users.Id">
+                                                                <i class="fas fa-bullhorn"></i> @Resources.Controller_Rentals.inform
                                                             </a>
                                                             @*<a href="#" class="btn btn-outline-primary inform-rental-custom" data-toggle="modal" data-target="#customMessageModal" title="Write Custom Message To Notify User That Rental Date is Almost Over" data-movie-id="@rental.Movie.Id" data-user-id="@rental.Users.Id">
                                                                 <i class="far fa-comment"></i> Inform With Custom Message
@@ -74,7 +74,7 @@
 
                             <hr />
                             @*Accordion To Display Users*@
-                            <h4 class="display-5 py-2 my-3 border-bottom">Customers</h4>
+                            <h4 class="display-5 py-2 my-3 border-bottom">@Resources.Controller_Rentals.customers</h4>
 
                             @if (urUserCount > 0)
                             {
@@ -82,10 +82,10 @@
                                     <table class="table table-striped table-hover table-bordered">
                                         <thead class="thead-light">
                                             <tr>
-                                                <th>Username</th>
-                                                <th>Movie Name</th>
-                                                <th>Date Rented</th>
-                                                <th>Return Date[ERD]</th>
+                                                <th>@Resources.Controller_Rentals.username</th>
+                                                <th>@Resources.Controller_Rentals.movie_name</th>
+                                                <th>@Resources.Controller_Rentals.date_rented</th>
+                                                <th>@Resources.Controller_Rentals.return_date</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -161,7 +161,7 @@
                     method: "GET",
                     success: function (data) {
                         if (data != null) {
-                            informer.addClass('disabled').html("<i class='fa fa-check'></i><i>Informed</i>");
+                            informer.addClass('disabled').html("<i class='fa fa-check'></i><i>@Resources.Controller_Rentals.informed</i>");
                         }
                     },
                     error: function (x) {
